@@ -7,14 +7,23 @@ const Question = ({
   question,
   answer,
   image = "/assets/iconos/test.png",
+  showAvatar = true,
 }: {
   question: string;
   answer: string | undefined;
   image?: string;
+  showAvatar?: boolean;
 }) => {
   return (
     <div className={styles.questionItem}>
-      <Avatar className={styles.user} picture={image} height={6} name="user"></Avatar>
+      {showAvatar && (
+        <Avatar
+          className={styles.user}
+          picture={image}
+          height={6}
+          name="user"
+        ></Avatar>
+      )}
       <span className={styles.question}>{question}</span>
       <span
         className={`${styles.answer} ${

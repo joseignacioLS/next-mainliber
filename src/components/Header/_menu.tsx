@@ -15,6 +15,7 @@ const Menu = () => {
     {isMenuShown && <div className={styles.links}>
       <Link href="/">Home</Link>
       <Link href="/consultas">Consultas</Link>
+      <Link href="/faq">FAQ</Link>
     </div>}
   </div>
 }
