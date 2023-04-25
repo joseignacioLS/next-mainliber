@@ -1,23 +1,25 @@
 import styles from "@/styles/Home.module.scss";
-import Header from "@/components/Header/_header";
+
 import { useState } from "react";
+
+import Header from "@/components/Header/_header";
 import Footer from "@/components/Footer/_footer";
-import Link from "next/link";
-import Forum from "./consultas";
-import FAQ from "./faq";
+import Forum from "@/components/Sections/consultas/Forum";
+import FAQ from "@/components/Sections/faq/FAQ";
+
+const logos = [
+  "Arag.png",
+  "DKV.jpg",
+  "Fiatc.jpg",
+  "Generali.png",
+  "Mapfre.png",
+  "MutuaLevante.png",
+  "MutuaMadrilena.png",
+  "PlusUltra.jpg",
+  "Zurich.png",
+];
 
 const Home = () => {
-  const [logos, setLogos] = useState([
-    "Arag.png",
-    "DKV.jpg",
-    "Fiatc.jpg",
-    "Generali.png",
-    "Mapfre.png",
-    "MutuaLevante.png",
-    "MutuaMadrilena.png",
-    "PlusUltra.jpg",
-    "Zurich.png",
-  ]);
   return (
     <div className="layout">
       <Header></Header>
@@ -47,11 +49,26 @@ const Home = () => {
         <section className={styles.mainSection}>
           <h2>Nuestros Servicios</h2>
           <div className={styles.services}>
-            <Link href="/servicios/decesos" className={styles.service}><span>Decesos</span><img src="/assets/iconos/test.png"/></Link>
-            <Link href="/servicios/salud" className={styles.service}><span>Salud</span><img src="/assets/iconos/test.png"/></Link>
-            <Link href="/servicios/automovil" className={styles.service}><span>Automóvil</span><img src="/assets/iconos/test.png"/></Link>
-            <Link href="/servicios/hogar" className={styles.service}><span>Hogar</span><img src="/assets/iconos/test.png"/></Link>
-            <Link href="/servicios/vida" className={styles.service}><span>Vida</span><img src="/assets/iconos/test.png"/></Link>
+            <div className={styles.service}>
+              <span>Decesos</span>
+              <img src="/assets/iconos/test.png" />
+            </div>
+            <div className={styles.service}>
+              <span>Salud</span>
+              <img src="/assets/iconos/test.png" />
+            </div>
+            <div className={styles.service}>
+              <span>Automóvil</span>
+              <img src="/assets/iconos/test.png" />
+            </div>
+            <div className={styles.service}>
+              <span>Hogar</span>
+              <img src="/assets/iconos/test.png" />
+            </div>
+            <div className={styles.service}>
+              <span>Vida</span>
+              <img src="/assets/iconos/test.png" />
+            </div>
           </div>
         </section>
         <section className={styles.mainSection}>
@@ -69,7 +86,7 @@ const Home = () => {
           <FAQ></FAQ>
         </section>
       </main>
-        <Footer></Footer>
+      <Footer></Footer>
     </div>
   );
 };

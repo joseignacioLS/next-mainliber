@@ -58,14 +58,6 @@ const Forum = () => {
   return (
     <>
       <h2>Centro de Gestión de Consultas</h2>
-
-      <span>
-        Consulta nuestro{" "}
-        <a href="#faq" className="link">
-          FAQ
-        </a>
-      </span>
-
       {userData.email ? (
         <div className="separatedBlock">
           <h3>Mis preguntas</h3>
