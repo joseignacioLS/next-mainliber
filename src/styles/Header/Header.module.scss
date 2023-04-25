@@ -1,34 +1,39 @@
+@import "../variables";
+
 .header {
   position: relative;
-
-  margin-bottom: 3rem;
 
   display: flex;
   flex-direction: column;
 
-  background-color: rgb(10, 13, 56);
+  background-color: $main_dark;
 
-  nav {
-    height: 3rem;
+  .loginContainer {
+    position: absolute;
+    top: .5rem;
+    right: 1rem;
+  }
 
-    padding: 0 6rem;
+  .navbar {
+    position: fixed;
+    right: 0rem;
+    top: 50%;
+    transform: translateY(-50%);
+
+    height: 2rem;
 
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     
-    background-color: white;
-
-    .navLinks {
-      display: flex;
-      gap: 1rem;
-    }
+    z-index:1;
   }
 
   .hero {
     height: 10rem;
     width: 100%;
-    padding: 0 6rem;
+    padding: 0 $page_side_padding;
     
     display: flex;
     justify-content: center;

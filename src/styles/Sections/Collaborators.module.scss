@@ -1,0 +1,26 @@
+.collaboratorsContainer {
+  overflow: hidden;
+  display: flex;
+}
+
+.collaborators {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 3rem;
+  animation: slide-left 25s infinite linear;
+
+  img {
+    flex-shrink: 0;
+    flex-grow: 0;
+  }
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(-33%);
+  }
+
+  to {
+    transform: translateX(-66.6%);
+  }
+}

@@ -1,23 +1,51 @@
-import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-import styles from "@/styles/Header/Menu.module.scss"
+import styles from "@/styles/Header/Menu.module.scss";
+import { useRouter } from "next/router";
 
 const Menu = () => {
-  const [isMenuShown, setIsMenuShown] = useState(false)
+  const [currentSection, setCurrentSection] = useState("home");
 
-  const toggleMenu = ():void => {
-    setIsMenuShown(oldValue => !oldValue);
-  }
+  const router = useRouter();
 
-  return <div className={styles.menu}>
-    <span className={styles.menuName} onClick={toggleMenu}>Menu</span>
-    {isMenuShown && <div className={styles.links}>
-      <Link href="/">Home</Link>
-      <Link href="/consultas">Consultas</Link>
-      <Link href="/faq">FAQ</Link>
-    </div>}
-  </div>
-}
+  const handleScroll = (faqSection: any, forumSection: any) => {
+    let modSection = "home";
+    if (window.scrollY >= faqSection.offsetTop) {
+      modSection = "faq";
+    } else if (window.scrollY >= forumSection.offsetTop) {
+      modSection = "consultas";
+    }
+    setCurrentSection(modSection);
+  };
 
-export default Menu
+  useEffect(() => {
+    const faqSection = document.querySelector("#faq");
+    const forumSection = document.querySelector("#consultas");
+    document.addEventListener("scroll", () => {
+      handleScroll(faqSection, forumSection);
+    });
+    handleScroll(faqSection, forumSection);
+  }, []);
+
+  return (
+    <div className={styles.menu}>
+      <a
+        href="#"
+        className={`${currentSection === "home" ? styles.active : ""}`}
+        data-section="Home"
+      ></a>
+      <a
+        href="#consultas"
+        className={`${currentSection === "consultas" ? styles.active : ""}`}
+        data-section="Consultas"
+      ></a>
+      <a
+        href="#faq"
+        className={`${currentSection === "faq" ? styles.active : ""}`}
+        data-section="FAQ"
+      ></a>
+    </div>
+  );
+};
+
+export default Menu;
