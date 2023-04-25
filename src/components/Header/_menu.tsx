@@ -1,23 +1,16 @@
-import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
-import styles from "@/styles/Header/Menu.module.scss"
+import styles from "@/styles/Header/Menu.module.scss";
 
 const Menu = () => {
-  const [isMenuShown, setIsMenuShown] = useState(false)
 
-  const toggleMenu = ():void => {
-    setIsMenuShown(oldValue => !oldValue);
-  }
+  return (
+    <div className={styles.menu}>
+      <a href="#">Home</a>
+      <a href="#consultas">Consultas</a>
+      <a href="#faq">FAQ</a>
+    </div>
+  );
+};
 
-  return <div className={styles.menu}>
-    <span className={styles.menuName} onClick={toggleMenu}>Menu</span>
-    {isMenuShown && <div className={styles.links}>
-      <Link href="/">Home</Link>
-      <Link href="/consultas">Consultas</Link>
-      <Link href="/faq">FAQ</Link>
-    </div>}
-  </div>
-}
-
-export default Menu
+export default Menu;

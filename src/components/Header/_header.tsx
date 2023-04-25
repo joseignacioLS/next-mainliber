@@ -2,7 +2,6 @@ import React from "react";
 
 import styles from "@/styles/Header/Header.module.scss";
 import GoogleLogin from "./_googleLogin";
-import Link from "next/link";
 import Menu from "./_menu";
 import Head from "next/head";
 
@@ -12,7 +11,7 @@ const Header = () => {
       <Head>
         <title>MainLiber</title>
       </Head>
-      <nav>
+      <nav className={styles.navbar}>
         <Menu></Menu>
         <GoogleLogin></GoogleLogin>
       </nav>

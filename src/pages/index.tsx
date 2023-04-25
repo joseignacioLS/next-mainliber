@@ -3,6 +3,8 @@ import Header from "@/components/Header/_header";
 import { useState } from "react";
 import Footer from "@/components/Footer/_footer";
 import Link from "next/link";
+import Forum from "./consultas";
+import FAQ from "./faq";
 
 const Home = () => {
   const [logos, setLogos] = useState([
@@ -59,6 +61,12 @@ const Home = () => {
               <img key={logo} src={"/assets/logos/" + logo} height="100px" />
             ))}
           </div>
+        </section>
+        <section id="consultas" className={styles.mainSection}>
+          <Forum></Forum>
+        </section>
+        <section id="faq" className={styles.mainSection}>
+          <FAQ></FAQ>
         </section>
       </main>
         <Footer></Footer>

@@ -11,7 +11,6 @@ import Question from "./_question";
 
 import styles from "@/styles/Consultas/Consultas.module.scss";
 import { UserContext } from "@/contexts/user";
-import Link from "next/link";
 
 const Forum = () => {
   const [query, setQuery] = useState("");
@@ -57,104 +56,100 @@ const Forum = () => {
     setUserQuestions(getUserQuestions(userData?.email));
   }, [userData]);
   return (
-    <div className="layout">
-      <Header></Header>
-      <main>
-        <h2>Centro de Gestión de Consultas</h2>
+    <>
+      <h2>Centro de Gestión de Consultas</h2>
 
-        <span>
-          Consulta nuestro{" "}
-          <Link href="/faq" className="link">
-            FAQ
-          </Link>
-        </span>
+      <span>
+        Consulta nuestro{" "}
+        <a href="#faq" className="link">
+          FAQ
+        </a>
+      </span>
 
-        {userData.email ? (
-          <div className="separatedBlock">
-            <h3>Mis preguntas</h3>
-            <form
-              className={styles.questionForm}
-              onSubmit={(e) => {
-                handleSubmitForm(e);
-              }}
-            >
-              <h4>Nueva consulta</h4>
-              <label>
-                <span>Escribe tu pregunta</span>
-                <textarea
-                  value={formData.question}
-                  onChange={(e) => {
-                    handleFormData(e.currentTarget.value, "question");
-                  }}
-                ></textarea>
-              </label>
-              <label className={styles.labelRow}>
-                <input
-                  type="checkbox"
-                  checked={formData.subscribe}
-                  onChange={(e) => {
-                    handleFormData(e.currentTarget.checked, "subscribe");
-                  }}
-                />
-                <span>
-                  Deseo recibir un aviso por email cuando mi pregunta sea
-                  contestada
-                </span>
-              </label>
-              <button>Enviar pregunta</button>
-            </form>
-            <h4>Mis consultas previas</h4>
-            <div className={styles.questionList}>
-              {userQuestions.map((question: IQuestion, i: number) => (
-                <Question
-                  key={i}
-                  question={question.question}
-                  answer={question.answer}
-                  image={userData.picture}
-                ></Question>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <div className="separatedBlock">
-            <h3>Inicia sesión para realizar consultas</h3>
-            <span>
-              Inicia sesión con tu cuenta de google usando el botón de la barra
-              de navegación para realizar tus consultas y que te notifiquemos al
-              ser contestadas.
-            </span>
-          </div>
-        )}
-
+      {userData.email ? (
         <div className="separatedBlock">
-          <h3>Buscador</h3>
-          <input
-            className={styles.queryInput}
-            value={query}
-            onInput={(e) => handleUserInput(e)}
-          />
+          <h3>Mis preguntas</h3>
+          <form
+            className={styles.questionForm}
+            onSubmit={(e) => {
+              handleSubmitForm(e);
+            }}
+          >
+            <h4>Nueva consulta</h4>
+            <label>
+              <span>Escribe tu pregunta</span>
+              <textarea
+                value={formData.question}
+                onChange={(e) => {
+                  handleFormData(e.currentTarget.value, "question");
+                }}
+              ></textarea>
+            </label>
+            <label className={styles.labelRow}>
+              <input
+                type="checkbox"
+                checked={formData.subscribe}
+                onChange={(e) => {
+                  handleFormData(e.currentTarget.checked, "subscribe");
+                }}
+              />
+              <span>
+                Deseo recibir un aviso por email cuando mi pregunta sea
+                contestada
+              </span>
+            </label>
+            <button>Enviar pregunta</button>
+          </form>
+          <h4>Mis consultas previas</h4>
           <div className={styles.questionList}>
-            {searchQuestions.length ? (
-              searchQuestions.map((question: IQuestion, i: number) => (
-                <Question
-                  key={i}
-                  question={question.question}
-                  answer={question.answer}
-                  showAvatar={false}
-                ></Question>
-              ))
-            ) : (
-              <p>
-                {query === ""
-                  ? "Escribe en la caja para empezar a búscar"
-                  : "Búsqueda sin resultados"}
-              </p>
-            )}
+            {userQuestions.map((question: IQuestion, i: number) => (
+              <Question
+                key={i}
+                question={question.question}
+                answer={question.answer}
+                image={userData.picture}
+              ></Question>
+            ))}
           </div>
         </div>
-      </main>
-      <Footer></Footer>
-    </div>
+      ) : (
+        <div className="separatedBlock">
+          <h3>Inicia sesión para realizar consultas</h3>
+          <span>
+            Inicia sesión con tu cuenta de google usando el botón de la barra de
+            navegación para realizar tus consultas y que te notifiquemos al ser
+            contestadas.
+          </span>
+        </div>
+      )}
+
+      <div className="separatedBlock">
+        <h3>Buscador</h3>
+        <input
+          className={styles.queryInput}
+          value={query}
+          onInput={(e) => handleUserInput(e)}
+        />
+        <div className={styles.questionList}>
+          {searchQuestions.length ? (
+            searchQuestions.map((question: IQuestion, i: number) => (
+              <Question
+                key={i}
+                question={question.question}
+                answer={question.answer}
+                showAvatar={false}
+              ></Question>
+            ))
+          ) : (
+            <p>
+              {query === ""
+                ? "Escribe en la caja para empezar a búscar"
+                : "Búsqueda sin resultados"}
+            </p>
+          )}
+        </div>
+      </div>
+    </>
   );
 };
 
