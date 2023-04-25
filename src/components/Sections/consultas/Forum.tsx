@@ -9,6 +9,7 @@ import Question from "./_question";
 
 import styles from "@/styles/Consultas/Consultas.module.scss";
 import { UserContext } from "@/contexts/user";
+import GoogleLogin from "@/components/Header/_googleLogin";
 
 const Forum = () => {
   const [query, setQuery] = useState("");
@@ -106,8 +107,8 @@ const Forum = () => {
         <div className="separatedBlock">
           <h3>Inicia sesión para realizar consultas</h3>
           <span>
-            Inicia sesión con tu cuenta de Google usando el botón de la barra de
-            navegación para realizar tus consultas y que te notifiquemos al ser
+            Inicia sesión con tu cuenta de Google <GoogleLogin></GoogleLogin>
+            para realizar tus consultas y recibir una notificación al ser
             contestadas.
           </span>
         </div>

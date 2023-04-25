@@ -5,7 +5,7 @@ import Menu from "./_menu";
 import Head from "next/head";
 import GoogleLogin from "./_googleLogin";
 
-const Header = ({ currentSection }: { currentSection: string }) => {
+const Header = () => {
   return (
     <header className={styles.header}>
       <Head>
@@ -15,7 +15,7 @@ const Header = ({ currentSection }: { currentSection: string }) => {
         <GoogleLogin></GoogleLogin>
       </div>
       <nav className={styles.navbar}>
-        <Menu currentSection={currentSection}></Menu>
+        <Menu></Menu>
       </nav>
       <div className={styles.hero}>
         <h1 className={styles.pageTitle}>MainLiber</h1>

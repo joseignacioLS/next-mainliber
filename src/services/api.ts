@@ -28,6 +28,15 @@ const questionsDB: IQuestion[] = [
   }
 ]
 
+export const faq : IQuestion[] = [
+  {
+    user: "admin",
+    question: "¿Cómo puedo hacerme socio de MainLiber?",
+    answer:
+      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+  },
+];
+
 export const getUserQuestions = (userEmail: string): IQuestion[] => {
   return questionsDB.filter(question => question.user === userEmail);
 }
@@ -38,7 +47,7 @@ export const getQuestionsFilter = (query: string): IQuestion[] => {
     return questionsDB.slice(questionsDB.length - 10)
   }
   query = query.toLowerCase()
-  return questionsDB.filter(question => {
+  return [...faq, ...questionsDB].filter(question => {
     return question.question.toLowerCase().includes(query) || question.answer?.toLowerCase().includes(query)
   })
 }
