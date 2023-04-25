@@ -1,6 +1,6 @@
 import styles from "@/styles/Home.module.scss";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import Header from "@/components/Header/_header";
 import Footer from "@/components/Footer/_footer";
@@ -20,9 +20,29 @@ const logos = [
 ];
 
 const Home = () => {
+  const [currentSection, setCurrentSection] = useState("home");
+
+  const handleScroll = (faqSection: any, forumSection: any) => {
+    if (window.scrollY >= faqSection.offsetTop) {
+      setCurrentSection("faq");
+    } else if (window.scrollY >= forumSection.offsetTop) {
+      setCurrentSection("consultas");
+    } else {
+      setCurrentSection("home");
+    }
+  };
+
+  useEffect(() => {
+    const faqSection = document.querySelector("#faq");
+    const forumSection = document.querySelector("#consultas");
+    document.addEventListener("scroll", () => {
+      handleScroll(faqSection, forumSection);
+    });
+  }, []);
+
   return (
     <div className="layout">
-      <Header></Header>
+      <Header currentSection={currentSection}></Header>
       <main>
         <section className={styles.mainSection}>
           <h2>Sobre nosotros</h2>

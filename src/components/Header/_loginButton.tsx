@@ -14,10 +14,10 @@ const LoginButton = ({}) => {
   return (
     <>
       {userData?.isLogged ? (
-        <Avatar picture={userData.picture} height={3}></Avatar>
+        <Avatar picture={userData.picture} height={5}></Avatar>
       ) : (
         <GoogleLogin
-          type="standard"
+          type="icon"
           onSuccess={(credentialResponse) => {
             console.log(credentialResponse);
             if (credentialResponse?.credential) {

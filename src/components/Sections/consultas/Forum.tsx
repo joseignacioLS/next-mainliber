@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer/_footer";
-import Header from "@/components/Header/_header";
 import {
   IQuestion,
   createNewQuestion,
@@ -57,7 +55,7 @@ const Forum = () => {
   }, [userData]);
   return (
     <>
-      <h2>Centro de Gestión de Consultas</h2>
+      <h2>Consultas</h2>
       {userData.email ? (
         <div className="separatedBlock">
           <h3>Mis preguntas</h3>
@@ -108,7 +106,7 @@ const Forum = () => {
         <div className="separatedBlock">
           <h3>Inicia sesión para realizar consultas</h3>
           <span>
-            Inicia sesión con tu cuenta de google usando el botón de la barra de
+            Inicia sesión con tu cuenta de Google usando el botón de la barra de
             navegación para realizar tus consultas y que te notifiquemos al ser
             contestadas.
           </span>
