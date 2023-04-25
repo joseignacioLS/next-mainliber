@@ -1,0 +1,40 @@
+.header {
+  position: relative;
+
+  margin-bottom: 3rem;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: rgb(10, 13, 56);
+
+  nav {
+    height: 3rem;
+
+    padding: 0 6rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    background-color: white;
+
+    .navLinks {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .hero {
+    height: 10rem;
+    width: 100%;
+    padding: 0 6rem;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+
+  }
+}
