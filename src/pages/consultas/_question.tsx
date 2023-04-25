@@ -14,7 +14,7 @@ const Question = ({
 }) => {
   return (
     <div className={styles.questionItem}>
-      <Avatar picture={image} height={6} name="user"></Avatar>
+      <Avatar className={styles.user} picture={image} height={6} name="user"></Avatar>
       <span className={styles.question}>{question}</span>
       <span
         className={`${styles.answer} ${
