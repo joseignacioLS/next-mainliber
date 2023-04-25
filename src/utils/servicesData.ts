@@ -1,11 +1,11 @@
-interface IServiceData {
+export interface IServiceData {
   id: string;
   name: string;
   description: string;
   icon?: string;
 }
 
-const serviceData: IServiceData[] = [
+export const serviceData: IServiceData[] = [
   {
     id: "automovil",
     name: "Automóvil",
@@ -32,5 +32,3 @@ const serviceData: IServiceData[] = [
   //   description: ""
   // }
 ]
-
-export {serviceData}

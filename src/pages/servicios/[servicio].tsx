@@ -2,18 +2,26 @@ import Footer from "@/components/Footer/_footer";
 import Header from "@/components/Header/_header";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { serviceData } from "@/utils/servicesData";
+import { serviceData, IServiceData } from "@/utils/servicesData";
+
+const initialData = {
+  id: "",
+  name: "",
+  description: "",
+} as IServiceData;
 
 const Service = () => {
   const router = useRouter();
   const { servicio } = router.query;
 
-  const [data, setData] = useState(undefined);
+  const [data, setData] = useState(initialData);
+
   useEffect(() => {
     const searchData = serviceData.find((v) => v.id === servicio);
     if (searchData === undefined) router.push("/");
-    setData(searchData);
+    setData(searchData as IServiceData);
   }, [servicio]);
+
   return (
     <>
       <Header></Header>
