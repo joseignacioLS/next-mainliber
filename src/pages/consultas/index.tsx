@@ -42,8 +42,9 @@ const Forum = () => {
           <>
             <h3>Mis preguntas</h3>
             <div className={styles.questionList}>
-              {userQuestions.map((question: IQuestion) => (
+              {userQuestions.map((question: IQuestion, i: number) => (
                 <Question
+                  key={i}
                   question={question.question}
                   answer={question.answer}
                   image={userData.picture}
@@ -61,8 +62,9 @@ const Forum = () => {
         />
         <div className={styles.questionList}>
           {searchQuestions.length ? (
-            searchQuestions.map((question: IQuestion) => (
+            searchQuestions.map((question: IQuestion, i: number) => (
               <Question
+                key={i}
                 question={question.question}
                 answer={question.answer}
               ></Question>
