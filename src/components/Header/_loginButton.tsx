@@ -13,8 +13,11 @@ const LoginButton = ({}) => {
 
   return (
     <>
-      {userData?.isLogged ? (
-        <Avatar picture={userData.picture} height={5}></Avatar>
+      {userData?.email ? (
+        <>
+          <Avatar picture={userData.picture} height={5}></Avatar>
+          <button onClick={() => storeUserData({})}>Logout</button>
+        </>
       ) : (
         <GoogleLogin
           type="icon"
@@ -24,12 +27,7 @@ const LoginButton = ({}) => {
               const decodedCredential: any = jwt_decode(
                 credentialResponse.credential
               );
-              storeUserData({
-                isLogged: true,
-                name: decodedCredential.given_name,
-                email: decodedCredential.email,
-                picture: decodedCredential.picture,
-              });
+              storeUserData(decodedCredential);
             }
           }}
           onError={() => {

@@ -7,7 +7,7 @@ import {
 import React, { useContext, useEffect, useState } from "react";
 import Question from "./_question";
 
-import styles from "@/styles/Consultas/Consultas.module.scss";
+import styles from "@/styles/Sections/Consultas/Consultas.module.scss";
 import { UserContext } from "@/contexts/user";
 import GoogleLogin from "@/components/Header/_googleLogin";
 
@@ -107,10 +107,10 @@ const Forum = () => {
         <div className="separatedBlock">
           <h3>Inicia sesión para realizar consultas</h3>
           <span>
-            Inicia sesión con tu cuenta de Google <GoogleLogin></GoogleLogin>
-            para realizar tus consultas y recibir una notificación al ser
-            contestadas.
+            Inicia sesión con tu cuenta de Google para realizar tus consultas y
+            recibir una notificación al ser contestadas.
           </span>
+          <GoogleLogin></GoogleLogin>
         </div>
       )}
 

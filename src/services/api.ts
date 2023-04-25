@@ -35,6 +35,30 @@ export const faq : IQuestion[] = [
     answer:
       "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
   },
+  {
+    user: "admin",
+    question: "¿Cómo puedo hacerme socio de MainLiber?",
+    answer:
+      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+  },
+  {
+    user: "admin",
+    question: "¿Cómo puedo hacerme socio de MainLiber?",
+    answer:
+      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+  },
+  {
+    user: "admin",
+    question: "¿Cómo puedo hacerme socio de MainLiber?",
+    answer:
+      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+  },
+  {
+    user: "admin",
+    question: "¿Cómo puedo hacerme socio de MainLiber?",
+    answer:
+      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+  },
 ];
 
 export const getUserQuestions = (userEmail: string): IQuestion[] => {

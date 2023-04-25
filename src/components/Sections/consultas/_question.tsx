@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 
-import styles from "@/styles/Consultas/Question.module.scss";
+import styles from "@/styles/Sections/Consultas/Question.module.scss";
 import Avatar from "@/components/Avatar/_avatar";
 
 const Question = ({
@@ -15,7 +15,7 @@ const Question = ({
   showAvatar?: boolean;
 }) => {
   return (
-    <div className={styles.questionItem}>
+    <div className={`${styles.questionItem}`}>
       {showAvatar && (
         <Avatar
           className={styles.user}
