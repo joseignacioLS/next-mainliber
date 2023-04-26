@@ -1,3 +1,5 @@
+@import "../variables";
+
 .services {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -15,9 +17,11 @@
     justify-content: space-between;
     align-items: center;
 
-    box-shadow: 2px 2px 5px black;
+    box-shadow: $default_shadow;
 
     transition: scale .1s;
+
+    cursor: pointer;
 
     img {
       width: 6rem;
@@ -26,6 +30,5 @@
     &:hover {
       scale: 1.05;
     }
-
   }
 }

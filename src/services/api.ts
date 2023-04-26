@@ -4,6 +4,7 @@ export interface IQuestion {
   answer?: string;
   date: Date;
   subscribe?: boolean
+  isFaq?: boolean
 }
 
 const questionsDB: IQuestion[] = [
@@ -28,13 +29,14 @@ const questionsDB: IQuestion[] = [
   }
 ]
 
-export const faq : IQuestion[] = [
+export const faq: IQuestion[] = [
   {
     user: "admin",
     question: "¿Cómo puedo hacerme socio de MainLiber?",
     date: new Date("2000/1/1"),
     answer:
       "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+    isFaq: true
   },
   {
     user: "admin",
@@ -42,6 +44,7 @@ export const faq : IQuestion[] = [
     date: new Date("2000/1/1"),
     answer:
       "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+    isFaq: true
   },
   {
     user: "admin",
@@ -49,6 +52,7 @@ export const faq : IQuestion[] = [
     date: new Date("2000/1/1"),
     answer:
       "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+    isFaq: true
   },
   {
     user: "admin",
@@ -56,6 +60,7 @@ export const faq : IQuestion[] = [
     date: new Date("2000/1/1"),
     answer:
       "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+    isFaq: true
   },
   {
     user: "admin",
@@ -63,6 +68,7 @@ export const faq : IQuestion[] = [
     date: new Date("2000/1/1"),
     answer:
       "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
+    isFaq: true
   },
 ];
 

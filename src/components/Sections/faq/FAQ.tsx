@@ -9,12 +9,12 @@ import styles from "@/styles/Sections/FAQ/FAQ.module.scss";
 const FAQ = () => {
   return (
     <>
-      <h2>FAQ</h2>
+      <h2>Preguntas Frecuentes</h2>
       <div className={styles.questionList}>
-        {faq.map((question) => {
+        {faq.map((question, i) => {
           return (
             <Question
-              key={question.question}
+              key={question.question + "_" + i}
               question={question.question}
               answer={question.answer}
               showAvatar={false}

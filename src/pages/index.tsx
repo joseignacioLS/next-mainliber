@@ -1,6 +1,6 @@
 import styles from "@/styles/Home.module.scss";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import Header from "@/components/core/Header/_header";
 import Footer from "@/components/core/Footer/_footer";
@@ -9,8 +9,11 @@ import FAQ from "@/components/Sections/faq/FAQ";
 import About from "@/components/Sections/about/About";
 import Services from "@/components/Sections/services/Services";
 import Collaborators from "@/components/Sections/collaborators/Collaborators";
+import Modal from "@/components/core/Modal/Modal";
+import { ModalContext } from "@/contexts/modal";
 
 const Home = () => {
+  const { isVisible } = useContext(ModalContext);
   return (
     <div className="layout">
       <Header></Header>
@@ -32,6 +35,7 @@ const Home = () => {
         </section>
       </main>
       <Footer></Footer>
+      {isVisible && <Modal></Modal>}
     </div>
   );
 };

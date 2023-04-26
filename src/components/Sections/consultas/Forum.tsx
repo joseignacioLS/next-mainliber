@@ -121,6 +121,7 @@ const Forum = () => {
           className={styles.queryInput}
           value={query}
           onInput={(e) => handleUserInput(e)}
+          placeholder="Empieza a escribir..."
         />
         <div className={styles.questionList}>
           {searchQuestions.length ? (
