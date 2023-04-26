@@ -2,7 +2,8 @@ import { UserContext } from "@/contexts/user";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import { useContext, useState } from "react";
-import Avatar from "../Avatar/_avatar";
+import Avatar from "../../Shared/Avatar/_avatar";
+import Button from "@/components/Shared/Button";
 
 const LoginButton = ({}) => {
   const {
@@ -16,7 +17,7 @@ const LoginButton = ({}) => {
       {userData?.email ? (
         <>
           <Avatar picture={userData.picture} height={5}></Avatar>
-          <button onClick={() => storeUserData({})}>Logout</button>
+          <Button text={"Logout"} action={() => storeUserData({})} isMain={false}></Button>
         </>
       ) : (
         <GoogleLogin

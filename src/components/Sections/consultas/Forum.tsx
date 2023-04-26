@@ -5,11 +5,12 @@ import {
   getUserQuestions,
 } from "@/services/api";
 import React, { useContext, useEffect, useState } from "react";
-import Question from "./_question";
+import Question from "../../Shared/Question";
 
 import styles from "@/styles/Sections/Consultas/Consultas.module.scss";
 import { UserContext } from "@/contexts/user";
-import GoogleLogin from "@/components/Header/_googleLogin";
+import GoogleLogin from "@/components/core/Header/_googleLogin";
+import Button from "@/components/Shared/Button";
 
 const Forum = () => {
   const [query, setQuery] = useState("");
@@ -89,7 +90,7 @@ const Forum = () => {
                 contestada
               </span>
             </label>
-            <button>Enviar pregunta</button>
+            <Button text={"Enviar pregunta"} action={() => {}}></Button>
           </form>
           <h4>Mis consultas previas</h4>
           <div className={styles.questionList}>

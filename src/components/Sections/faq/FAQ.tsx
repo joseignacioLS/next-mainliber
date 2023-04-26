@@ -1,7 +1,7 @@
-import Footer from "@/components/Footer/_footer";
-import Header from "@/components/Header/_header";
+import Footer from "@/components/core/Footer/_footer";
+import Header from "@/components/core/Header/_header";
 import React from "react";
-import Question from "../consultas/_question";
+import Question from "../../Shared/Question";
 import { faq } from "@/services/api";
 
 import styles from "@/styles/Sections/FAQ/FAQ.module.scss";

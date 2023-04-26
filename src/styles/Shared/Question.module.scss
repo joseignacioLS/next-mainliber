@@ -1,6 +1,7 @@
 .questionItem {
   padding: 1rem;
   display: grid;
+  flex-shrink: 0;
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr;
   grid-template-areas: "user question"

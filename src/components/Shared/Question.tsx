@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import styles from "@/styles/Sections/Consultas/Question.module.scss";
-import Avatar from "@/components/Avatar/_avatar";
+import styles from "@/styles/Shared/Question.module.scss";
+import Avatar from "@/components/Shared/Avatar/_avatar";
 
 const Question = ({
   question,
