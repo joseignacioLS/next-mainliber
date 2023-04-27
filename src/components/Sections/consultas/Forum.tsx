@@ -48,9 +48,9 @@ const Forum = () => {
           ></List>
           <h4>Mis consultas previas</h4>
           <List
-            content={userQuestions.map((question: IQuestion, i: number) => (
+            content={userQuestions.map((question: IQuestion) => (
               <Question
-                key={i}
+                key={question._id}
                 question={question.question}
                 answer={question.answer}
                 image={userData.picture}

@@ -9,7 +9,8 @@ const LoginButton = ({}) => {
   const {
     userData,
     storeUserData,
-  }: { userData: any; storeUserData: ({}: any) => void } =
+    logout
+  } =
     useContext(UserContext);
 
   return (
@@ -17,7 +18,7 @@ const LoginButton = ({}) => {
       {userData?.email ? (
         <>
           <Avatar picture={userData.picture} height={5}></Avatar>
-          <Button text={"Logout"} action={() => storeUserData({})} isMain={false}></Button>
+          <Button text={"Logout"} action={() => logout()} isMain={false}></Button>
         </>
       ) : (
         <GoogleLogin

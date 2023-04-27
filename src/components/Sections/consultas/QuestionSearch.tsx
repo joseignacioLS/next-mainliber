@@ -8,13 +8,12 @@ import Button from "@/components/Shared/Button";
 import Spinner from "@/components/Shared/Spinner";
 
 const QuestionSearch = () => {
-  
   const [query, setQuery] = useState("");
   const [searchQuestions, setSearchQuestions] = useState([] as IQuestion[]);
   const [isLoading, setIsLoading] = useState(false);
   const [initSearch, setInitSearch] = useState(false);
 
-    const handleUserInput = (event: any) => {
+  const handleUserInput = (event: any) => {
     const newQuery = event.currentTarget.value;
     setQuery(newQuery);
   };
@@ -29,22 +28,33 @@ const QuestionSearch = () => {
   return (
     <>
       <h3>Buscador</h3>
-      <input
-        className={styles.queryInput}
-        value={query}
-        onInput={(e) => handleUserInput(e)}
-        placeholder="Empieza a escribir..."
-      />
-      <Button text="Buscar" action={updateQuestionsOnQuery}></Button>
+
+      <List
+        content={[
+          <input
+            key="input"
+            className={styles.queryInput}
+            value={query}
+            onInput={(e) => handleUserInput(e)}
+            placeholder="Empieza a escribir..."
+          />,
+          <Button
+            key="search"
+            text="Buscar"
+            action={updateQuestionsOnQuery}
+          ></Button>,
+        ]}
+      ></List>
       {isLoading ? (
         <Spinner></Spinner>
       ) : (
         <List
+          marginTop={true}
           content={
             searchQuestions?.length > 0 ? (
-              searchQuestions.map((question: IQuestion, i: number) => (
+              searchQuestions.map((question: IQuestion) => (
                 <Question
-                  key={i}
+                  key={question._id}
                   question={question.question}
                   answer={question.answer}
                   showAvatar={false}

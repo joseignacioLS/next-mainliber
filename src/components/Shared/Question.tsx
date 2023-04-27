@@ -6,12 +6,14 @@ import Avatar from "@/components/Shared/Avatar";
 const Question = ({
   question,
   answer,
+  user,
   image = "/assets/iconos/test.png",
   showAvatar = true,
 }: {
   question: string;
   answer: string | undefined;
   image?: string;
+  user?: string;
   showAvatar?: boolean;
 }) => {
   return (
@@ -21,7 +23,7 @@ const Question = ({
           className={styles.user}
           picture={image}
           height={6}
-          name="user"
+          name={user}
         ></Avatar>
       )}
       <span className={styles.question}>{question}</span>

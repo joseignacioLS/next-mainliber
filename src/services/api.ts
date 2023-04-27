@@ -1,4 +1,5 @@
 export interface IQuestion {
+  _id: string;
   user: string;
   question: string;
   answer?: string;
@@ -7,58 +8,15 @@ export interface IQuestion {
   isFaq?: boolean
 }
 
-export const faq: IQuestion[] = [
-  {
-    user: "admin",
-    question: "¿Cómo puedo hacerme socio de MainLiber?",
-    date: new Date("2000/1/1"),
-    answer:
-      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
-    isFaq: true
-  },
-  {
-    user: "admin",
-    question: "¿Cómo puedo hacerme socio de MainLiber?",
-    date: new Date("2000/1/1"),
-    answer:
-      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
-    isFaq: true
-  },
-  {
-    user: "admin",
-    question: "¿Cómo puedo hacerme socio de MainLiber?",
-    date: new Date("2000/1/1"),
-    answer:
-      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
-    isFaq: true
-  },
-  {
-    user: "admin",
-    question: "¿Cómo puedo hacerme socio de MainLiber?",
-    date: new Date("2000/1/1"),
-    answer:
-      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
-    isFaq: true
-  },
-  {
-    user: "admin",
-    question: "¿Cómo puedo hacerme socio de MainLiber?",
-    date: new Date("2000/1/1"),
-    answer:
-      "Contacta con nosotros en fake@email.fk y conoce más sobre nuestro servicio personalizado.",
-    isFaq: true
-  },
-];
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 export const getUserQuestions = async (userEmail: string): Promise<IQuestion[]> => {
-  console.log(API_URL);
   const headers = {
     'content-type': 'application/json'
   }
   const requestBody = {
     query: `query getUserQuestions($userEmail: String) {userQuestions(query: $userEmail){
+      _id,
         user,
         question,
         answer,
@@ -83,6 +41,7 @@ export const getQuestionsFilter = async (query: string): Promise<IQuestion[]> =>
   }
   const requestBody = {
     query: `query searchQuestions($query: String) {search(query: $query){
+      _id,
         __typename,
         user,
         question,
@@ -108,6 +67,7 @@ export const createNewQuestion = async (userEmail: string, question: string, sub
   }
   const requestBody = {
     query: `query addNewQuestion($userEmail: String, $question: String, $subscribe: Boolean) {addQuestion(user: $userEmail, question: $question, subscribe: $subscribe){
+      _id,
         __typename,
         user,
         question,
@@ -124,4 +84,34 @@ export const createNewQuestion = async (userEmail: string, question: string, sub
   const res = await fetch(API_URL, options);
   const data = await res.json();
   return data.data.addQuestion;
+}
+
+export const getPageOfQuestionsRequest = async (page: number) => {
+
+  const headers = {
+    'content-type': 'application/json'
+  }
+  const requestBody = {
+    query: `query getPage($page: Int) { page(query: $page){
+      questions {
+
+        _id,
+        user,
+        question,
+        answer,
+        date,
+        subscribe
+      },
+      maxPage
+      }}`,
+    variables: { page }
+  }
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify(requestBody)
+  };
+  const res = await fetch(API_URL, options);
+  const data = await res.json();
+  return data.data.page;
 }

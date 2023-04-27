@@ -21,4 +21,9 @@
   background-color: white;
   border-radius: .5rem;
   box-shadow: $default_shadow;
+
+  @media (max-width: 800px) {
+    min-width: 300px;
+    max-width: 95vw;
+  }
 }

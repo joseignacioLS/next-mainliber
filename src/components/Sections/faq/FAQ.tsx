@@ -1,7 +1,6 @@
-
 import React from "react";
 import Question from "../../Shared/Question";
-import { faq } from "@/services/api";
+import { IQuestion } from "@/services/api";
 
 import List from "@/components/Shared/List";
 
@@ -10,10 +9,11 @@ const FAQ = () => {
     <>
       <h2>Preguntas Frecuentes</h2>
       <List
-        content={faq.map((question, i) => {
+        marginTop={true}
+        content={[].map((question: IQuestion, i: number) => {
           return (
             <Question
-              key={question.question + "_" + i}
+              key={question._id}
               question={question.question}
               answer={question.answer}
               showAvatar={false}

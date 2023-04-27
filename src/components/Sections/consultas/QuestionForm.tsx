@@ -79,7 +79,7 @@ const QuestionForm = ({ setUserQuestions }: any) => {
         handleSubmitForm(e);
       }}
     >
-      <h4>Nueva consulta</h4>
+      <h3>Nueva consulta</h3>
       <label>
         <span>Escribe tu pregunta</span>
         <textarea

@@ -1,6 +1,6 @@
 import styles from "@/styles/Home.module.scss";
 
-import { useContext, } from "react";
+import { useContext } from "react";
 
 import Header from "@/components/core/Header/Header";
 import Footer from "@/components/core/Footer/Footer";
@@ -11,9 +11,13 @@ import Services from "@/components/Sections/services/Services";
 import Collaborators from "@/components/Sections/collaborators/Collaborators";
 import Modal from "@/components/core/Modal/Modal";
 import { ModalContext } from "@/contexts/modal";
+import Link from "next/link";
+import Button from "@/components/Shared/Button";
+import { UserContext } from "@/contexts/user";
 
 const Home = () => {
   const { isVisible } = useContext(ModalContext);
+  const { hasAuth } = useContext(UserContext);
   return (
     <div className="layout">
       <Header></Header>
@@ -36,6 +40,11 @@ const Home = () => {
       </main>
       <Footer></Footer>
       {isVisible && <Modal></Modal>}
+      {hasAuth() && (
+        <Link href="/administracion" className="admin-btn">
+          <Button isMain={false} text="Admin" action={() => {}}></Button>
+        </Link>
+      )}
     </div>
   );
 };
