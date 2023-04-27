@@ -1,3 +1,5 @@
+import React, { useContext, useEffect, useState } from "react";
+
 import Button from "@/components/Shared/Button";
 import List from "@/components/Shared/List";
 import Question from "@/components/Shared/Question";
@@ -6,9 +8,8 @@ import { UserContext } from "@/contexts/user";
 import { IQuestion, getPageOfQuestionsRequest } from "@/services/api";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext, useEffect, useState } from "react";
 
-const index = () => {
+const Index = () => {
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
   const [questions, setQuestions] = useState([] as any);
@@ -69,12 +70,12 @@ const index = () => {
           ]}
         ></List>
       </main>
-      
-        <Link href="/" className="admin-btn">
-          <Button isMain={false} text="Home" action={() => {}}></Button>
-        </Link>
+
+      <Link href="/" className="admin-btn">
+        <Button isMain={false} text="Home" action={() => {}}></Button>
+      </Link>
     </div>
   );
 };
 
-export default index;
+export default Index;
