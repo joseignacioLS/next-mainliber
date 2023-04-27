@@ -1,9 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  IQuestion,
-  getQuestionsFilter,
-  getUserQuestions,
-} from "@/services/api";
+import { IQuestion, getUserQuestions } from "@/services/api";
 
 import Question from "../../Shared/Question";
 
@@ -21,17 +17,18 @@ const Forum = () => {
   const { openModal } = useContext(ModalContext);
 
   const updateQuestionsOnUser = async () => {
+    if (!userData?.email) return;
     setUserQuestions(await getUserQuestions(userData?.email));
   };
 
   useEffect(() => {
     updateQuestionsOnUser();
-  }, [userData]);
+  }, [userData?.email]);
 
   return (
     <>
       <h2>Consultas</h2>
-      {userData.email ? (
+      {userData?.email ? (
         <div className="separatedBlock">
           <List
             content={[
