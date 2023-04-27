@@ -17,27 +17,14 @@ const Forum = () => {
   const [query, setQuery] = useState("");
   const { userData }: any = useContext(UserContext);
   const [userQuestions, setUserQuestions] = useState([] as IQuestion[]);
-  const [searchQuestions, setSearchQuestions] = useState([] as IQuestion[]);
 
   const handleUserInput = (event: any) => {
     const newQuery = event.currentTarget.value;
     setQuery(newQuery);
   };
-
-  const updateQuestionsOnQuery = async () => {
-    setSearchQuestions(await getQuestionsFilter(query));
-  };
   const updateQuestionsOnUser = async () => {
     setUserQuestions(await getUserQuestions(userData?.email));
   };
-
-  useEffect(() => {
-    if (query === "") {
-      setSearchQuestions([]);
-      return;
-    }
-    updateQuestionsOnQuery();
-  }, [query]);
 
   useEffect(() => {
     updateQuestionsOnUser();
@@ -77,7 +64,6 @@ const Forum = () => {
       <div className="separatedBlock">
         <QuestionSearch
           query={query}
-          searchQuestions={searchQuestions}
           handleUserInput={handleUserInput}
         ></QuestionSearch>
       </div>
