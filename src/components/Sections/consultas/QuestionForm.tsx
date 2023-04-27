@@ -41,6 +41,7 @@ const QuestionForm = ({ setUserQuestions, setSearchQuestions }: any) => {
           distribution="center"
           content={[
             <Button
+              key="accept"
               text={"Confirmar"}
               action={() => {
                 createNewQuestion(
@@ -56,7 +57,11 @@ const QuestionForm = ({ setUserQuestions, setSearchQuestions }: any) => {
                 setSearchQuestions();
               }}
             ></Button>,
-            <Button text={"Cancelar"} action={() => closeModal()}></Button>,
+            <Button
+              key="reject"
+              text={"Cancelar"}
+              action={() => closeModal()}
+            ></Button>,
           ]}
         ></List>
       </div>
