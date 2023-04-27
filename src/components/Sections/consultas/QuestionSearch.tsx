@@ -7,10 +7,17 @@ import styles from "./QuestionSearch.module.scss";
 import Button from "@/components/Shared/Button";
 import Spinner from "@/components/Shared/Spinner";
 
-const QuestionSearch = ({ query, handleUserInput }: any) => {
+const QuestionSearch = () => {
+  
+  const [query, setQuery] = useState("");
   const [searchQuestions, setSearchQuestions] = useState([] as IQuestion[]);
   const [isLoading, setIsLoading] = useState(false);
   const [initSearch, setInitSearch] = useState(false);
+
+    const handleUserInput = (event: any) => {
+    const newQuery = event.currentTarget.value;
+    setQuery(newQuery);
+  };
 
   const updateQuestionsOnQuery = async () => {
     setInitSearch(true);

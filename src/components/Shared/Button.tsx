@@ -9,7 +9,7 @@ const Button = ({
   disabled = false,
 }: {
   text: string;
-  action: () => void;
+  action: any;
   isMain?: boolean;
   disabled?: boolean;
 }) => {

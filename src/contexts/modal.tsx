@@ -22,13 +22,13 @@ export const ModalContext = createContext({} as IModalProvider);
 export const ModalContextProvider = ({ children }: { children: any }) => {
   const [modalData, setModalData] = useState(initialState);
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModalData((oldValue) => {
       return { ...oldValue, isVisible: false, content: null };
     });
   };
 
-  const openModal = (content: any) => {
+  const openModal = (content: any): void => {
     setModalData((oldValue) => {
       return { ...oldValue, isVisible: true, content };
     });

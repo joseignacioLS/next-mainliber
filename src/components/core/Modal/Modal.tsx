@@ -7,7 +7,9 @@ const Modal = () => {
   const { content, closeModal } = useContext(ModalContext);
   return (
     <div className={styles.modalBackground} onClick={() => closeModal()}>
-      <div className={styles.modal}>{content}</div>
+      <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        {content}
+      </div>
     </div>
   );
 };

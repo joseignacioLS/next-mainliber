@@ -12,16 +12,14 @@ import GoogleLogin from "@/components/Shared/GoogleLogin";
 import List from "@/components/Shared/List";
 import QuestionForm from "./QuestionForm";
 import QuestionSearch from "./QuestionSearch";
+import { ModalContext } from "@/contexts/modal";
+import Button from "@/components/Shared/Button";
 
 const Forum = () => {
-  const [query, setQuery] = useState("");
   const { userData }: any = useContext(UserContext);
   const [userQuestions, setUserQuestions] = useState([] as IQuestion[]);
+  const { openModal } = useContext(ModalContext);
 
-  const handleUserInput = (event: any) => {
-    const newQuery = event.currentTarget.value;
-    setQuery(newQuery);
-  };
   const updateQuestionsOnUser = async () => {
     setUserQuestions(await getUserQuestions(userData?.email));
   };
@@ -35,8 +33,22 @@ const Forum = () => {
       <h2>Consultas</h2>
       {userData.email ? (
         <div className="separatedBlock">
-          <h3>Mis preguntas</h3>
-          <QuestionForm setUserQuestions={setUserQuestions}></QuestionForm>
+          <List
+            content={[
+              <h3 key="title">Mis preguntas</h3>,
+              <Button
+                key="button"
+                text="Nueva Consulta"
+                action={() =>
+                  openModal(
+                    <QuestionForm
+                      setUserQuestions={setUserQuestions}
+                    ></QuestionForm>
+                  )
+                }
+              ></Button>,
+            ]}
+          ></List>
           <h4>Mis consultas previas</h4>
           <List
             content={userQuestions.map((question: IQuestion, i: number) => (
@@ -60,12 +72,8 @@ const Forum = () => {
           <GoogleLogin></GoogleLogin>
         </div>
       )}
-
       <div className="separatedBlock">
-        <QuestionSearch
-          query={query}
-          handleUserInput={handleUserInput}
-        ></QuestionSearch>
+        <QuestionSearch></QuestionSearch>
       </div>
     </>
   );

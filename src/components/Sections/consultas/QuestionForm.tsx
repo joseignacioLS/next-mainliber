@@ -10,6 +10,7 @@ import {
 } from "@/services/api";
 
 import styles from "./QuestionForm.module.scss";
+import Spinner from "@/components/Shared/Spinner";
 
 const QuestionForm = ({ setUserQuestions }: any) => {
   const { userData }: any = useContext(UserContext);
@@ -44,6 +45,7 @@ const QuestionForm = ({ setUserQuestions }: any) => {
               key="accept"
               text={"Confirmar"}
               action={async () => {
+                openModal(<Spinner></Spinner>);
                 await createNewQuestion(
                   userData.email,
                   formData.question,
@@ -54,12 +56,16 @@ const QuestionForm = ({ setUserQuestions }: any) => {
                   subscribe: true,
                 });
                 setUserQuestions(await getUserQuestions(userData?.email));
+                closeModal();
               }}
             ></Button>,
             <Button
               key="reject"
               text={"Cancelar"}
-              action={() => closeModal()}
+              action={(e: any) => {
+                e.preventDefault();
+                closeModal();
+              }}
             ></Button>,
           ]}
         ></List>
@@ -95,11 +101,17 @@ const QuestionForm = ({ setUserQuestions }: any) => {
           Deseo recibir un aviso por email cuando mi pregunta sea contestada
         </span>
       </label>
-      <Button
-        text={"Enviar pregunta"}
-        action={() => {}}
-        disabled={formData.question === ""}
-      ></Button>
+      <List
+        content={[
+          <Button
+            key="accept"
+            text={"Enviar pregunta"}
+            action={() => {}}
+            disabled={formData.question === ""}
+          ></Button>,
+          <Button key="reject" text={"Cancelar"} action={closeModal}></Button>,
+        ]}
+      ></List>
     </form>
   );
 };
