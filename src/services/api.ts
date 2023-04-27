@@ -115,3 +115,31 @@ export const getPageOfQuestionsRequest = async (page: number) => {
   const data = await res.json();
   return data.data.page;
 }
+
+
+export const getFaqQuestionsRequest = async () => {
+
+  const headers = {
+    'content-type': 'application/json'
+  }
+  const requestBody = {
+    query: `{faq(nothing: ""){
+      
+        _id,
+        user,
+        question,
+        answer,
+        date,
+        subscribe
+      }}`
+  }
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify(requestBody)
+  };
+  const res = await fetch(API_URL, options);
+  const data = await res.json();
+  console.log(data);
+  return data.data.faq;
+}

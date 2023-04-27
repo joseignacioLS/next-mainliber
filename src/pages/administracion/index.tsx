@@ -3,7 +3,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Button from "@/components/Shared/Button";
 import List from "@/components/Shared/List";
 import Question from "@/components/Shared/Question";
-import Header from "@/components/core/Header/Header";
 import { UserContext } from "@/contexts/user";
 import { IQuestion, getPageOfQuestionsRequest } from "@/services/api";
 import Link from "next/link";
