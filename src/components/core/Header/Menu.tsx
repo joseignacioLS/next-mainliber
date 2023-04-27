@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 
 import styles from "@/styles/Header/Menu.module.scss";
-import { useRouter } from "next/router";
 
 const Menu = () => {
   const [currentSection, setCurrentSection] = useState("home");
 
-  const router = useRouter();
-
   const handleScroll = (faqSection: any, forumSection: any) => {
     let modSection = "home";
-    if (window.scrollY >= faqSection.offsetTop) {
+    if (window.scrollY >= faqSection.offsetTop - 16) {
       modSection = "faq";
-    } else if (window.scrollY >= forumSection.offsetTop) {
+    } else if (window.scrollY >= forumSection.offsetTop - 16) {
       modSection = "consultas";
     }
     setCurrentSection(modSection);

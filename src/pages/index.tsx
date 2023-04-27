@@ -1,9 +1,9 @@
 import styles from "@/styles/Home.module.scss";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, } from "react";
 
-import Header from "@/components/core/Header/_header";
-import Footer from "@/components/core/Footer/_footer";
+import Header from "@/components/core/Header/Header";
+import Footer from "@/components/core/Footer/Footer";
 import Forum from "@/components/Sections/consultas/Forum";
 import FAQ from "@/components/Sections/faq/FAQ";
 import About from "@/components/Sections/about/About";

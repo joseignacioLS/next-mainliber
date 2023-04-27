@@ -2,7 +2,7 @@ import { UserContext } from "@/contexts/user";
 import { GoogleLogin } from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
 import { useContext, useState } from "react";
-import Avatar from "../../Shared/Avatar/_avatar";
+import Avatar from "./Avatar";
 import Button from "@/components/Shared/Button";
 
 const LoginButton = ({}) => {

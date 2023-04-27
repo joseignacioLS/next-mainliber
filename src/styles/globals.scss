@@ -27,18 +27,17 @@ h2{
   color: $tint1;
   font-size: 28px;
   font-family: 'Crete Round', serif;
+  border-bottom: 1px solid $tint0;
+  margin-bottom: .5rem;
 }
 
 h3 {
   color: $tint2;
   font-size: 20px;
+  border-bottom: 1px solid $tint0;
+  margin-bottom: .5rem;
 }
 
-h2,
-h3 {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid $tint1;
-}
 
 h4 {
   margin-bottom: .5rem;

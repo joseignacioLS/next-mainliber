@@ -1,17 +1,16 @@
-import Footer from "@/components/core/Footer/_footer";
-import Header from "@/components/core/Header/_header";
+
 import React from "react";
 import Question from "../../Shared/Question";
 import { faq } from "@/services/api";
 
-import styles from "@/styles/Sections/FAQ/FAQ.module.scss";
+import List from "@/components/Shared/List";
 
 const FAQ = () => {
   return (
     <>
       <h2>Preguntas Frecuentes</h2>
-      <div className={styles.questionList}>
-        {faq.map((question, i) => {
+      <List
+        content={faq.map((question, i) => {
           return (
             <Question
               key={question.question + "_" + i}
@@ -21,7 +20,8 @@ const FAQ = () => {
             ></Question>
           );
         })}
-      </div>
+        direction="column"
+      ></List>
     </>
   );
 };

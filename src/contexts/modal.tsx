@@ -1,5 +1,3 @@
-import Forum from "@/components/Sections/consultas/Forum";
-import Decesos from "@/components/Sections/services/Individual/Decesos";
 import React, { createContext, useState } from "react";
 
 interface IModalProvider {
@@ -16,7 +14,7 @@ interface IModalData {
 
 const initialState = {
   isVisible: false,
-  content: <Decesos />,
+  content: null,
 } as IModalData;
 
 export const ModalContext = createContext({} as IModalProvider);
