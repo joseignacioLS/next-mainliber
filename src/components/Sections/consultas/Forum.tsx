@@ -17,32 +17,39 @@ const Forum = () => {
   const [query, setQuery] = useState("");
   const { userData }: any = useContext(UserContext);
   const [userQuestions, setUserQuestions] = useState([] as IQuestion[]);
-  const [searchQuestions, setSearchQuestions] = useState(
-    getQuestionsFilter("")
-  );
+  const [searchQuestions, setSearchQuestions] = useState([] as IQuestion[]);
 
   const handleUserInput = (event: any) => {
     const newQuery = event.currentTarget.value;
     setQuery(newQuery);
-    setSearchQuestions(getQuestionsFilter(newQuery));
+  };
+
+  const updateQuestionsOnQuery = async () => {
+    setSearchQuestions(await getQuestionsFilter(query));
+  };
+  const updateQuestionsOnUser = async () => {
+    setUserQuestions(await getUserQuestions(userData?.email));
   };
 
   useEffect(() => {
-    setUserQuestions(getUserQuestions(userData?.email));
+    if (query === "") {
+      setSearchQuestions([]);
+      return;
+    }
+    updateQuestionsOnQuery();
+  }, [query]);
+
+  useEffect(() => {
+    updateQuestionsOnUser();
   }, [userData]);
-  
+
   return (
     <>
       <h2>Consultas</h2>
       {userData.email ? (
         <div className="separatedBlock">
           <h3>Mis preguntas</h3>
-          <QuestionForm
-            setUserQuestions={setUserQuestions}
-            setSearchQuestions={() =>
-              setSearchQuestions(getQuestionsFilter(query))
-            }
-          ></QuestionForm>
+          <QuestionForm setUserQuestions={setUserQuestions}></QuestionForm>
           <h4>Mis consultas previas</h4>
           <List
             content={userQuestions.map((question: IQuestion, i: number) => (

@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "@/styles/Shared/Button.module.scss";
+import styles from "./Button.module.scss";
 
 const Button = ({
   text,

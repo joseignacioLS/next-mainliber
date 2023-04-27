@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "@/styles/Shared/Question.module.scss";
+import styles from "./Question.module.scss";
 import Avatar from "@/components/Shared/Avatar";
 
 const Question = ({

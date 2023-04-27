@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "@/styles/Header/Header.module.scss";
+import styles from "./Header.module.scss";
 import Menu from "./Menu";
 import Head from "next/head";
 import GoogleLogin from "../../Shared/GoogleLogin";

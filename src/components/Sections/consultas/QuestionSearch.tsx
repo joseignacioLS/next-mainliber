@@ -3,7 +3,7 @@ import Question from "@/components/Shared/Question";
 import { IQuestion } from "@/services/api";
 import React from "react";
 
-import styles from "@/styles/Sections/Consultas/QuestionSearch.module.scss";
+import styles from "./QuestionSearch.module.scss";
 
 const QuestionSearch = ({ query, handleUserInput, searchQuestions }: any) => {
   return (
@@ -17,7 +17,7 @@ const QuestionSearch = ({ query, handleUserInput, searchQuestions }: any) => {
       />
       <List
         content={
-          searchQuestions.length ? (
+          searchQuestions?.length ? (
             searchQuestions.map((question: IQuestion, i: number) => (
               <Question
                 key={i}

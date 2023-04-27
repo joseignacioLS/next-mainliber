@@ -9,9 +9,9 @@ import {
   getUserQuestions,
 } from "@/services/api";
 
-import styles from "@/styles/Sections/Consultas/QuestionForm.module.scss";
+import styles from "./QuestionForm.module.scss";
 
-const QuestionForm = ({ setUserQuestions, setSearchQuestions }: any) => {
+const QuestionForm = ({ setUserQuestions }: any) => {
   const { userData }: any = useContext(UserContext);
   const { openModal, closeModal } = useContext(ModalContext);
 
@@ -43,8 +43,8 @@ const QuestionForm = ({ setUserQuestions, setSearchQuestions }: any) => {
             <Button
               key="accept"
               text={"Confirmar"}
-              action={() => {
-                createNewQuestion(
+              action={async () => {
+                await createNewQuestion(
                   userData.email,
                   formData.question,
                   formData.subscribe
@@ -53,8 +53,7 @@ const QuestionForm = ({ setUserQuestions, setSearchQuestions }: any) => {
                   question: "",
                   subscribe: true,
                 });
-                setUserQuestions(getUserQuestions(userData?.email));
-                setSearchQuestions();
+                setUserQuestions(await getUserQuestions(userData?.email));
               }}
             ></Button>,
             <Button

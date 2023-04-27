@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "@/styles/Shared/Avatar.module.scss";
+import styles from "./Avatar.module.scss";
 
 const Avatar = ({
   picture,

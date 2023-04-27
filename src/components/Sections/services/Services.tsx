@@ -7,7 +7,7 @@ import Automovil from "./Individual/Automovil";
 import Hogar from "./Individual/Hogar";
 import Vida from "./Individual/Vida";
 
-import styles from "@/styles/Sections/Services.module.scss";
+import styles from "./Services.module.scss";
 
 const Services = () => {
   const { openModal } = useContext(ModalContext);

@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "@/styles/Sections/Collaborators.module.scss";
+import styles from "./Collaborators.module.scss";
 
 const logos = [
   "Arag.png",

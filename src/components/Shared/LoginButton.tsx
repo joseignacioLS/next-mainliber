@@ -23,7 +23,6 @@ const LoginButton = ({}) => {
         <GoogleLogin
           type="icon"
           onSuccess={(credentialResponse) => {
-            console.log(credentialResponse);
             if (credentialResponse?.credential) {
               const decodedCredential: any = jwt_decode(
                 credentialResponse.credential
