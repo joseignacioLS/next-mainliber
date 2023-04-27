@@ -50,6 +50,8 @@ export const faq: IQuestion[] = [
   },
 ];
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
+
 export const getUserQuestions = async (userEmail: string): Promise<IQuestion[]> => {
   const headers = {
     'content-type': 'application/json'
@@ -68,7 +70,7 @@ export const getUserQuestions = async (userEmail: string): Promise<IQuestion[]> 
     headers,
     body: JSON.stringify(requestBody)
   }
-  const res = await fetch("http://localhost:4000/graphql", options)
+  const res = await fetch(API_URL, options)
   const data = await res.json()
   return data.data.userQuestions;
 }
@@ -93,7 +95,7 @@ export const getQuestionsFilter = async (query: string): Promise<IQuestion[]> =>
     headers,
     body: JSON.stringify(requestBody)
   }
-  const res = await fetch("http://localhost:4000/graphql", options)
+  const res = await fetch(API_URL, options)
   const data = await res.json()
   return data.data.search;
 }
@@ -118,7 +120,7 @@ export const createNewQuestion = async (userEmail: string, question: string, sub
     headers,
     body: JSON.stringify(requestBody)
   };
-  const res = await fetch("http://localhost:4000/graphql", options);
+  const res = await fetch(API_URL, options);
   const data = await res.json();
   return data.data.addQuestion;
 }
