@@ -53,6 +53,7 @@ export const faq: IQuestion[] = [
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
 export const getUserQuestions = async (userEmail: string): Promise<IQuestion[]> => {
+  console.log(API_URL);
   const headers = {
     'content-type': 'application/json'
   }
