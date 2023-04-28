@@ -29,9 +29,16 @@ export const getUserQuestions = async (userEmail: string): Promise<IQuestion[]> 
     headers,
     body: JSON.stringify(requestBody)
   }
-  const res = await fetch(API_URL, options)
-  const data = await res.json()
-  return data.data.userQuestions;
+  try {
+
+    const res = await fetch(API_URL, options);
+    const data = await res.json();
+    return data.data.userQuestions;
+  }
+  catch (err) {
+    console.log(err);
+    return [];
+  }
 }
 
 export const getQuestionsFilter = async (query: string): Promise<IQuestion[]> => {
@@ -55,9 +62,16 @@ export const getQuestionsFilter = async (query: string): Promise<IQuestion[]> =>
     headers,
     body: JSON.stringify(requestBody)
   }
-  const res = await fetch(API_URL, options)
-  const data = await res.json()
-  return data.data.search;
+  try {
+
+    const res = await fetch(API_URL, options)
+    const data = await res.json()
+    return data.data.search;
+  }
+  catch (err) {
+    console.log(err)
+    return [];
+  }
 }
 
 export const createNewQuestion = async (userEmail: string, question: string, subscribe: boolean) => {
@@ -81,39 +95,53 @@ export const createNewQuestion = async (userEmail: string, question: string, sub
     headers,
     body: JSON.stringify(requestBody)
   };
-  const res = await fetch(API_URL, options);
-  const data = await res.json();
-  return data.data.addQuestion;
+  try {
+
+    const res = await fetch(API_URL, options);
+    const data = await res.json();
+    return data.data.addQuestion;
+  }
+  catch (err) {
+    console.log(err);
+    return {};
+  }
 }
 
-export const getPageOfQuestionsRequest = async (page: number) => {
+export const getPageOfQuestionsRequest = async (page: number, onlyUnanswered: boolean, showFaq: boolean) => {
 
   const headers = {
     'content-type': 'application/json'
   }
   const requestBody = {
-    query: `query getPage($page: Int) { page(query: $page){
+    query: `query getPage($page: Int, $onlyUnanswered: Boolean, $showFaq: Boolean) { page(query: $page, onlyUnanswered: $onlyUnanswered, showFaq: $showFaq){
       questions {
-
         _id,
         user,
         question,
         answer,
         date,
-        subscribe
+        subscribe,
+        isFaq
       },
       maxPage
       }}`,
-    variables: { page }
+    variables: { page, onlyUnanswered, showFaq }
   }
   const options = {
     method: "POST",
     headers,
     body: JSON.stringify(requestBody)
   };
-  const res = await fetch(API_URL, options);
-  const data = await res.json();
-  return data.data.page;
+  try {
+
+    const res = await fetch(API_URL, options);
+    const data = await res.json();
+    return data.data.page;
+  }
+  catch (err) {
+    console.log(err);
+    return [];
+  }
 }
 
 
@@ -130,7 +158,7 @@ export const getFaqQuestionsRequest = async () => {
         question,
         answer,
         date,
-        subscribe
+        subscribe,
       }}`
   }
   const options = {
@@ -138,8 +166,81 @@ export const getFaqQuestionsRequest = async () => {
     headers,
     body: JSON.stringify(requestBody)
   };
-  const res = await fetch(API_URL, options);
-  const data = await res.json();
-  console.log(data);
-  return data.data.faq;
+  try {
+
+    const res = await fetch(API_URL, options);
+    const data = await res.json();
+    return data.data.faq;
+  }
+  catch (err) {
+    console.log(err);
+    return [];
+  }
+}
+
+
+export const answerQuestionRequest = async (id: string, answer: string) => {
+
+  const headers = {
+    'content-type': 'application/json'
+  }
+  const requestBody = {
+    query: `query answerQuestion($id: String, $answer: String) {answerQuestion(id: $id, answer: $answer){
+      _id,
+        __typename,
+        user,
+        question,
+        answer,
+        date
+      }}`,
+    variables: { id, answer }
+  };
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify(requestBody)
+  };
+  try {
+
+    const res = await fetch(API_URL, options);
+    const data = await res.json();
+    return data.data.addQuestion;
+  }
+  catch (err) {
+    console.log(err);
+    return {};
+  }
+}
+
+export const deleteQuestionRequest = async (id: string) => {
+
+  const headers = {
+    'content-type': 'application/json'
+  }
+  const requestBody = {
+    query: `query deleteQuestion($id: String) {deleteQuestion(id: $id){
+      _id,
+        __typename,
+        user,
+        question,
+        answer,
+        date
+      }}`,
+    variables: { id }
+  };
+  const options = {
+    method: "POST",
+    headers,
+    body: JSON.stringify(requestBody)
+  };
+  try {
+
+    const res = await fetch(API_URL, options);
+    const data = await res.json();
+    return data.data.addQuestion;
+  }
+  catch (err) {
+    console.log(err);
+    return {};
+  }
 }

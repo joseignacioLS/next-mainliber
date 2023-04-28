@@ -1,0 +1,28 @@
+.question {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  gap: 1rem;
+  outline: 1px solid black;
+
+  .metadata {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .btns {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 8px;
+
+  }
+}
