@@ -89,6 +89,7 @@ const Question = ({
                   space={32}
                   content={[
                     <Button
+                      key="confirmar"
                       text="confirmar"
                       action={() => {
                         deleteQuestionRequest(question._id)
@@ -102,6 +103,7 @@ const Question = ({
                       }}
                     ></Button>,
                     <Button
+                      key="cancelar"
                       text="cancelar"
                       action={() => {
                         closeModal();
