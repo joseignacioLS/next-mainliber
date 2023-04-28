@@ -13,7 +13,7 @@ import { ModalContext } from "@/contexts/modal";
 const Index = () => {
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
-  const [questions, setQuestions] = useState([] as any);
+  const [questions, setQuestions] = useState([] as IQuestion[]);
 
   const [onlyUnanswered, setOnlyUnanswered] = useState(false);
   const [showFaq, setShowFaq] = useState(false);
@@ -63,7 +63,7 @@ const Index = () => {
         ></Button>
         <List
           direction="column"
-          content={questions?.map((q: IQuestion) => (
+          content={questions.map((q: IQuestion) => (
             <Question
               key={q._id}
               question={q}
