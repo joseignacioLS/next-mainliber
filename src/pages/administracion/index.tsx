@@ -9,11 +9,13 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Modal from "@/components/core/Modal/Modal";
 import { ModalContext } from "@/contexts/modal";
+import Spinner from "@/components/Shared/Spinner";
 
 const Index = () => {
   const [page, setPage] = useState(0);
   const [maxPage, setMaxPage] = useState(0);
   const [questions, setQuestions] = useState([] as IQuestion[]);
+  const [loading, setLoading] = useState(true);
 
   const [onlyUnanswered, setOnlyUnanswered] = useState(false);
   const [showFaq, setShowFaq] = useState(false);
@@ -23,13 +25,15 @@ const Index = () => {
   const router = useRouter();
 
   const getPageOfQuestions = async () => {
-    const response = await getPageOfQuestionsRequest(
-      page,
-      onlyUnanswered,
-      showFaq
-    );
-    setQuestions(response.questions);
-    setMaxPage(response.maxPage);
+    setLoading(true);
+    getPageOfQuestionsRequest(page, onlyUnanswered, showFaq)
+      .then((response) => {
+        setQuestions(response.questions);
+        setMaxPage(response.maxPage);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
   useEffect(() => {
     getPageOfQuestions();
@@ -47,7 +51,7 @@ const Index = () => {
         <h3>Listado de preguntas</h3>
         <Button
           key="button"
-          text={onlyUnanswered?"Solo sin contestar":"Todas las preguntas"}
+          text={onlyUnanswered ? "Solo sin contestar" : "Todas las preguntas"}
           action={() => {
             setOnlyUnanswered((oldValue) => !oldValue);
           }}
@@ -61,16 +65,6 @@ const Index = () => {
           }}
           isMain={!showFaq}
         ></Button>
-        <List
-          direction="column"
-          content={questions.map((q: IQuestion) => (
-            <Question
-              key={q._id}
-              question={q}
-              updateQuestions={getPageOfQuestions}
-            ></Question>
-          ))}
-        ></List>
         <List
           marginTop={true}
           content={[
@@ -93,8 +87,22 @@ const Index = () => {
             ></Button>,
           ]}
         ></List>
-      </main>
 
+        {loading ? (
+          <Spinner></Spinner>
+        ) : (
+          <List
+            direction="column"
+            content={questions.map((q: IQuestion) => (
+              <Question
+                key={q._id}
+                question={q}
+                updateQuestions={getPageOfQuestions}
+              ></Question>
+            ))}
+          ></List>
+        )}
+      </main>
       <Link href="/" className="admin-btn">
         <Button isMain={false} text="Home" action={() => {}}></Button>
       </Link>
