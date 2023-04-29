@@ -17,7 +17,7 @@ const Question = ({
   question: IQuestion;
   updateQuestions: any;
 }) => {
-  const questionDate = new Date(question.date);
+  const questionDate = new Date(question?.date);
   const daysPast = Math.floor(
     (new Date().getTime() - questionDate.getTime()) / (1000 * 60 * 60 * 24)
   );
@@ -36,7 +36,7 @@ const Question = ({
         <span className="user">{question.user}</span>
         <b>Fecha</b>
         <span className="date">
-          {new Date(question.date).toLocaleDateString("es-ES")} (Hace {daysPast}{" "}
+          {new Date(question?.date).toLocaleDateString("es-ES")} (Hace {daysPast}{" "}
           días)
         </span>
       </div>
