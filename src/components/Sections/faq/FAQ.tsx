@@ -6,9 +6,14 @@ import List from "@/components/Shared/List";
 
 const FAQ = () => {
   const [faqQuestions, setFaqQuestions] = useState([] as IQuestion[]);
-  const getFaqQuestions = async () => {
-    const questions = await getFaqQuestionsRequest();
-    setFaqQuestions(questions)
+  const getFaqQuestions = () => {
+    getFaqQuestionsRequest()
+      .then((data) => {
+        setFaqQuestions(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {

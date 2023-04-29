@@ -92,6 +92,7 @@ const Index = () => {
           <Spinner></Spinner>
         ) : (
           <List
+            marginTop={true}
             direction="column"
             content={questions.map((q: IQuestion) => (
               <Question

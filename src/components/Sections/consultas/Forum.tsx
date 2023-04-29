@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { IQuestion, getUserQuestions } from "@/services/api";
+import { IQuestion, getUserQuestionsRequest } from "@/services/api";
 
 import Question from "../../Shared/Question";
 
@@ -16,9 +16,15 @@ const Forum = () => {
   const [userQuestions, setUserQuestions] = useState([] as IQuestion[]);
   const { openModal } = useContext(ModalContext);
 
-  const updateQuestionsOnUser = async () => {
+  const updateQuestionsOnUser = () => {
     if (!userData?.email) return;
-    setUserQuestions(await getUserQuestions(userData?.email));
+    getUserQuestionsRequest(userData?.email)
+      .then((data) => {
+        setUserQuestions(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   useEffect(() => {
@@ -48,6 +54,8 @@ const Forum = () => {
           ></List>
           <h4>Mis consultas previas</h4>
           <List
+            maxHeight={600}
+            padding={true}
             content={userQuestions.map((question: IQuestion) => (
               <Question
                 key={question._id}

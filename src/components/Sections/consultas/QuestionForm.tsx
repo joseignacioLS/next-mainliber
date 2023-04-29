@@ -4,9 +4,8 @@ import { ModalContext } from "@/contexts/modal";
 import { UserContext } from "@/contexts/user";
 import React, { useContext, useState } from "react";
 import {
-  createNewQuestion,
-  getQuestionsFilter,
-  getUserQuestions,
+  createNewQuestionRequest,
+  getUserQuestionsRequest,
 } from "@/services/api";
 
 import styles from "./QuestionForm.module.scss";
@@ -46,7 +45,7 @@ const QuestionForm = ({ setUserQuestions }: any) => {
               text={"Confirmar"}
               action={async () => {
                 openModal(<Spinner></Spinner>);
-                await createNewQuestion(
+                await createNewQuestionRequest(
                   userData.email,
                   formData.question,
                   formData.subscribe
@@ -55,7 +54,7 @@ const QuestionForm = ({ setUserQuestions }: any) => {
                   question: "",
                   subscribe: true,
                 });
-                setUserQuestions(await getUserQuestions(userData?.email));
+                setUserQuestions(await getUserQuestionsRequest(userData?.email));
                 closeModal();
               }}
             ></Button>,

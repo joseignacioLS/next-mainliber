@@ -6,12 +6,16 @@ const List = ({
   space = 16,
   content = null,
   marginTop = false,
+  maxHeight = 0,
+  padding = false,
 }: {
   direction?: "row" | "column";
   distribution?: "center" | "flex-start" | "flex-end" | "space-between";
   space?: number;
   content: any;
   marginTop?: boolean;
+  maxHeight?: number;
+  padding?: boolean;
 }) => {
   return (
     <div
@@ -23,6 +27,9 @@ const List = ({
         alignItems: "center",
         gap: space + "px",
         marginTop: marginTop ? "1rem" : "0",
+        maxHeight: maxHeight > 0 ? maxHeight + "px" : "infinite",
+        overflowY: maxHeight > 0 ? "auto" : "visible",
+        padding: padding ? "1rem" : 0,
       }}
     >
       {content}

@@ -10,7 +10,7 @@ export interface IQuestion {
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
-export const getUserQuestions = async (userEmail: string): Promise<IQuestion[]> => {
+export const getUserQuestionsRequest = async (userEmail: string): Promise<IQuestion[]> => {
   const headers = {
     'content-type': 'application/json'
   }
@@ -41,7 +41,7 @@ export const getUserQuestions = async (userEmail: string): Promise<IQuestion[]> 
   }
 }
 
-export const getQuestionsFilter = async (query: string): Promise<IQuestion[]> => {
+export const getQuestionsFilterRequest = async (query: string): Promise<IQuestion[]> => {
 
   const headers = {
     'content-type': 'application/json'
@@ -74,7 +74,7 @@ export const getQuestionsFilter = async (query: string): Promise<IQuestion[]> =>
   }
 }
 
-export const createNewQuestion = async (userEmail: string, question: string, subscribe: boolean) => {
+export const createNewQuestionRequest = async (userEmail: string, question: string, subscribe: boolean) => {
 
   const headers = {
     'content-type': 'application/json'

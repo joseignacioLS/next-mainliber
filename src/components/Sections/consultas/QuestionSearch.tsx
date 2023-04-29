@@ -1,6 +1,6 @@
 import List from "@/components/Shared/List";
 import Question from "@/components/Shared/Question";
-import { IQuestion, getQuestionsFilter } from "@/services/api";
+import { IQuestion, getQuestionsFilterRequest } from "@/services/api";
 import React, { useState } from "react";
 
 import styles from "./QuestionSearch.module.scss";
@@ -21,7 +21,7 @@ const QuestionSearch = () => {
   const updateQuestionsOnQuery = async () => {
     setInitSearch(true);
     setIsLoading(true);
-    const newQuestions = await getQuestionsFilter(query);
+    const newQuestions = await getQuestionsFilterRequest(query);
     setSearchQuestions(newQuestions);
     setIsLoading(false);
   };
@@ -49,6 +49,8 @@ const QuestionSearch = () => {
         <Spinner></Spinner>
       ) : (
         <List
+          maxHeight={600}
+          padding={true}
           marginTop={true}
           content={
             searchQuestions?.length > 0 ? (
