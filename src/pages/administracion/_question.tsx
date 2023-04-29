@@ -11,13 +11,13 @@ import { ModalContext } from "@/contexts/modal";
 import List from "@/components/Shared/List";
 
 const Question = ({
-  question,
+  question = { _id: "", question: "", answer: "", user: "", date: new Date() },
   updateQuestions,
 }: {
   question: IQuestion;
   updateQuestions: any;
 }) => {
-  const questionDate = new Date(question?.date);
+  const questionDate = new Date(question.date);
   const daysPast = Math.floor(
     (new Date().getTime() - questionDate.getTime()) / (1000 * 60 * 60 * 24)
   );
@@ -36,7 +36,7 @@ const Question = ({
         <span className="user">{question.user}</span>
         <b>Fecha</b>
         <span className="date">
-          {new Date(question?.date).toLocaleDateString("es-ES")} (Hace {daysPast}{" "}
+          {new Date(question.date).toLocaleDateString("es-ES")} (Hace {daysPast}{" "}
           días)
         </span>
       </div>
