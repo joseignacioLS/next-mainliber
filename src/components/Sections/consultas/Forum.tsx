@@ -49,7 +49,7 @@ const Forum = () => {
                   )
                 }
               >
-                "Nueva Consulta"
+                Nueva Consulta
               </Button>,
             ]}
           </List>

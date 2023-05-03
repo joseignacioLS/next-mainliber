@@ -43,7 +43,7 @@ const Index = () => {
     setTimeout(() => {
       if (!hasAuth()) router.push("/");
     }, 5);
-  }, [userData]);
+  }, [userData, hasAuth, router]);
   return (
     <div className="layout">
       <main>
@@ -54,18 +54,19 @@ const Index = () => {
           action={() => {
             setOnlyUnanswered((oldValue) => !oldValue);
           }}
-          
-          mode={onlyUnanswered? "secondaryButton":"mainButton"}
-        >{
-          onlyUnanswered ? "Solo sin contestar" : "Todas las preguntas"
-        }</Button>
+          mode={onlyUnanswered ? "secondaryButton" : "mainButton"}
+        >
+          {onlyUnanswered ? "Solo sin contestar" : "Todas las preguntas"}
+        </Button>
         <Button
           key="button"
           action={() => {
             setShowFaq((oldValue) => !oldValue);
           }}
-          mode={showFaq?"secondaryButton":"mainButton"}
-        >{showFaq ? "Mostrando Faq" : "No mostrando Faq"}</Button>
+          mode={showFaq ? "secondaryButton" : "mainButton"}
+        >
+          {showFaq ? "Mostrando Faq" : "No mostrando Faq"}
+        </Button>
         <List marginTop={true}>
           {[
             <Button
@@ -74,7 +75,9 @@ const Index = () => {
                 setPage((oldValue) => Math.max(0, oldValue - 1));
               }}
               disabled={page === 0}
-            >{"<"}</Button>,
+            >
+              {"<"}
+            </Button>,
             <span key="page">{page}</span>,
             <Button
               key="next"
@@ -82,7 +85,9 @@ const Index = () => {
               action={() => {
                 setPage((oldValue) => Math.min(maxPage, oldValue + 1));
               }}
-            >{">"}</Button>,
+            >
+              {">"}
+            </Button>,
           ]}
         </List>
 
@@ -101,7 +106,9 @@ const Index = () => {
         )}
       </main>
       <Link href="/" className="admin-btn">
-        <Button mode="secondaryButton" action={() => {}}>Home</Button>
+        <Button mode="secondaryButton" action={() => {}}>
+          Home
+        </Button>
       </Link>
       {isVisible && <Modal></Modal>}
     </div>

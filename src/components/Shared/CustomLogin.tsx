@@ -34,7 +34,7 @@ const CustomLogin = () => {
     if (userData.isLogged) {
       getUserInformation(userData.token);
     }
-  }, []);
+  }, [userData.isLogged, userData.token]);
   return (
     <>
       {userData.isLogged ? (
