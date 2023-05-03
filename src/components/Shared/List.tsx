@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 const List = ({
   direction = "row",
@@ -12,10 +12,15 @@ const List = ({
   maxWidth = 0,
 }: {
   direction?: "row" | "column";
-  distribution?: "center" | "flex-start" | "flex-end" | "space-between" | "space-evenly";
+  distribution?:
+    | "center"
+    | "flex-start"
+    | "flex-end"
+    | "space-between"
+    | "space-evenly";
   aligment?: "center" | "flex-start" | "flex-end";
   space?: number;
-  children: any;
+  children: ReactNode;
   marginTop?: boolean;
   maxHeight?: number;
   maxWidth?: number;

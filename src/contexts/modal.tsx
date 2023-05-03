@@ -1,15 +1,15 @@
-import React, { createContext, useState } from "react";
+import React, { ReactNode, createContext, useState } from "react";
 
 interface IModalProvider {
   isVisible: boolean;
-  content: any;
+  content: ReactNode;
   closeModal: () => void;
-  openModal: (content: any) => void;
+  openModal: (content: ReactNode) => void;
 }
 
 interface IModalData {
   isVisible: boolean;
-  content: any;
+  content: ReactNode;
 }
 
 const initialState = {
@@ -19,7 +19,7 @@ const initialState = {
 
 export const ModalContext = createContext({} as IModalProvider);
 
-export const ModalContextProvider = ({ children }: { children: any }) => {
+export const ModalContextProvider = ({ children }: { children: ReactNode }) => {
   const [modalData, setModalData] = useState(initialState);
 
   const closeModal = (): void => {
@@ -28,7 +28,7 @@ export const ModalContextProvider = ({ children }: { children: any }) => {
     });
   };
 
-  const openModal = (content: any): void => {
+  const openModal = (content: ReactNode): void => {
     setModalData((oldValue) => {
       return { ...oldValue, isVisible: true, content };
     });

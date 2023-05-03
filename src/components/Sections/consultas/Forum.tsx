@@ -12,7 +12,7 @@ import { ModalContext } from "@/contexts/modal";
 import Button from "@/components/Shared/Button";
 
 const Forum = () => {
-  const { userData }: any = useContext(UserContext);
+  const { userData } = useContext(UserContext);
   const [userQuestions, setUserQuestions] = useState([] as IQuestion[]);
   const { openModal } = useContext(ModalContext);
 

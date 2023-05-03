@@ -1,37 +1,78 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { ReactNode, createContext, useEffect, useState } from "react";
 
-interface IUserData {
-  login: any;
-  logout: any;
-  storeUserData: ({}: any) => void;
-  userData: any;
-  hasAuth: any;
+export interface IToken {
+  access_token: string;
+  authuser: string;
+  expires_in: number;
+  prompt: string;
+  scope: string;
+  token_type: string;
+}
+interface IGoogleData {
+  email: string;
+  given_name: string;
+  id: string;
+  locale: string;
+  name: string;
+  picture: string;
+  verified_email: boolean;
 }
 
-export const UserContext = createContext({} as IUserData);
+interface IUserData extends IGoogleData {
+  token: IToken;
+  isLogged: boolean;
+}
+
+interface IContextData {
+  login: (token: IToken) => Promise<boolean | null>;
+  logout: () => void;
+  storeUserData: (data: IUserData) => void;
+  userData: IUserData;
+  hasAuth: () => boolean;
+}
+
+export const UserContext = createContext({} as IContextData);
 
 const authUsers = process.env.NEXT_PUBLIC_AUTH_USERS?.split("/") || [];
 
-export const UserContextProvider = ({ children }: { children: any }) => {
-  const [userData, setUserData] = useState({} as any);
+export const UserContextProvider = ({ children }: { children: ReactNode }) => {
+  const [userData, setUserData] = useState({
+    email: "",
+    given_name: "",
+    id: "",
+    locale: "",
+    name: "",
+    picture: "",
+    verified_email: false,
+    isLogged: false,
+    token: {
+      access_token: "",
+      authuser: "",
+      expires_in: 0,
+      prompt: "",
+      scope: "",
+      token_type: "",
+    },
+  } as IUserData);
+
   const [localStorageChecked, setLocalStorageChecked] = useState(false);
 
-  const saveInLocalStorage = (data: any) => {
+  const saveInLocalStorage = (data: IUserData) => {
     localStorage.setItem("userData", JSON.stringify(data));
   };
 
-  const getLocalStorage = (): any => {
+  const getLocalStorage = (): IUserData | null => {
     const storage = localStorage.getItem("userData");
     if (!storage) return null;
     return JSON.parse(storage);
   };
 
-  const storeUserData = (data: {}): void => {
+  const storeUserData = (data: IUserData): void => {
     setUserData(data);
     saveInLocalStorage(data);
   };
 
-  const getUserInformation = async (token: any) => {
+  const getUserInformation = async (token: IToken) => {
     const res = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
       headers: {
         Authorization: `Bearer ${token.access_token}`,
@@ -45,14 +86,15 @@ export const UserContextProvider = ({ children }: { children: any }) => {
     }
   };
 
-  const login = async (token: any) => {
+  const login = async (token: IToken) => {
     const userGoogleData = await getUserInformation(token);
     if (!userGoogleData) return null;
     storeUserData({ ...userGoogleData, token, isLogged: true });
+    return true;
   };
 
   const logout = () => {
-    const data = { isLogged: false };
+    const data = { isLogged: false } as IUserData;
     setUserData(data);
     saveInLocalStorage(data);
   };
@@ -81,7 +123,7 @@ export const UserContextProvider = ({ children }: { children: any }) => {
   useEffect(() => {
     checkLogState();
   }, []);
-  
+
   return (
     <UserContext.Provider
       value={{

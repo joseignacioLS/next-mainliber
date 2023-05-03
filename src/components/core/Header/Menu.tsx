@@ -6,9 +6,9 @@ const Menu = () => {
   const [currentSection, setCurrentSection] = useState("home");
 
   const handleScroll = (
-    faqSection: any,
-    forumSection: any,
-    contactSection: any
+    faqSection: HTMLElement,
+    forumSection: HTMLElement,
+    contactSection: HTMLElement
   ) => {
     let modSection = "servicios";
     if (!faqSection || !forumSection || !contactSection) return;
@@ -23,9 +23,9 @@ const Menu = () => {
   };
 
   useEffect(() => {
-    const faqSection = document.querySelector("#faq");
-    const forumSection = document.querySelector("#consultas");
-    const contactSection = document.querySelector("#contacto");
+    const faqSection = document.querySelector("#faq") as HTMLElement;
+    const forumSection = document.querySelector("#consultas") as HTMLElement;
+    const contactSection = document.querySelector("#contacto") as HTMLElement;
     document.addEventListener("scroll", () => {
       handleScroll(faqSection, forumSection, contactSection);
     });

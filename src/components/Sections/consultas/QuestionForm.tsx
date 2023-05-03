@@ -4,6 +4,7 @@ import { ModalContext } from "@/contexts/modal";
 import { UserContext } from "@/contexts/user";
 import React, { useContext, useState } from "react";
 import {
+  IQuestion,
   createNewQuestionRequest,
   getUserQuestionsRequest,
 } from "@/services/api";
@@ -11,8 +12,12 @@ import {
 import styles from "./QuestionForm.module.scss";
 import Spinner from "@/components/Shared/Spinner";
 
-const QuestionForm = ({ setUserQuestions }: any) => {
-  const { userData }: any = useContext(UserContext);
+const QuestionForm = ({
+  setUserQuestions,
+}: {
+  setUserQuestions: (userQuestions: IQuestion[]) => void;
+}) => {
+  const { userData } = useContext(UserContext);
   const { openModal, closeModal } = useContext(ModalContext);
 
   const [formData, setFormData] = useState({
@@ -23,7 +28,7 @@ const QuestionForm = ({ setUserQuestions }: any) => {
     subscribe: boolean;
   });
 
-  const handleFormData = (value: any, field: string) => {
+  const handleFormData = (value: number | string | boolean, field: string) => {
     setFormData((oldValue) => {
       return { ...oldValue, [field]: value };
     });
@@ -57,8 +62,7 @@ const QuestionForm = ({ setUserQuestions }: any) => {
             Confirmar
           </Button>
           <Button
-            action={(e: any) => {
-              e.preventDefault();
+            action={() => {
               closeModal();
             }}
           >

@@ -30,7 +30,6 @@ export const getUserQuestionsRequest = async (userEmail: string): Promise<IQuest
     body: JSON.stringify(requestBody)
   }
   try {
-
     const res = await fetch(API_URL, options);
     const data = await res.json();
     return data.data.userQuestions;

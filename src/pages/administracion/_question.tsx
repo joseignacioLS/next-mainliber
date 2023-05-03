@@ -15,7 +15,7 @@ const Question = ({
   updateQuestions,
 }: {
   question: IQuestion;
-  updateQuestions: any;
+  updateQuestions: () => void;
 }) => {
   const questionDate = new Date(question.date);
   const daysPast = Math.floor(
@@ -74,8 +74,8 @@ const Question = ({
           action={() => {
             const fieldBox = document.querySelector(
               `#ID${question._id}`
-            ) as any;
-            if (fieldBox) fieldBox.value = question.answer;
+            ) as HTMLInputElement;
+            if (fieldBox.value) fieldBox.value = question.answer || "";
           }}
           disabled={newAnswer === question.answer}
         >

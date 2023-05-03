@@ -1,7 +1,7 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import React, { useContext, useEffect } from "react";
 import Button from "./Button";
-import { UserContext } from "@/contexts/user";
+import { IToken, UserContext } from "@/contexts/user";
 import Avatar from "./Avatar";
 import { ModalContext } from "@/contexts/modal";
 import List from "./List";
@@ -10,8 +10,8 @@ const CustomLogin = () => {
   const { userData, storeUserData, logout, login } = useContext(UserContext);
   const { openModal } = useContext(ModalContext);
   const googleLogin = useGoogleLogin({
-    onSuccess: (token) => {
-      if (!login(token)) openModal(<p>Login Error</p>);
+    onSuccess: (token: any) => {
+      if (!login(token as IToken)) openModal(<p>Login Error</p>);
     },
   });
 

@@ -1,20 +1,20 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import styles from "./Button.module.scss";
-
 
 const Button = ({
   action,
   mode = "mainButton",
   disabled = false,
-  children = "",
+  children = null,
 }: {
-  action: any;
+  action: () => void;
   mode?: string;
   disabled?: boolean;
-  children: any;
+  children: ReactNode;
 }) => {
   const handleClick = (e: any) => {
+    e.preventDefault();
     action();
   };
   return (
