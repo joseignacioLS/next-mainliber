@@ -11,6 +11,7 @@ const Menu = () => {
     contactSection: any
   ) => {
     let modSection = "servicios";
+    if (!faqSection || !forumSection || !contactSection) return;
     if (window.scrollY >= faqSection.offsetTop) {
       modSection = "faq";
     } else if (window.scrollY >= forumSection.offsetTop) {

@@ -55,7 +55,6 @@ const Question = ({
       </div>
       <div className={styles.btns}>
         <Button
-          text="Actualizar respuesta"
           action={() => {
             answerQuestionRequest(question._id, newAnswer || "")
               .then((res) => {
@@ -68,9 +67,8 @@ const Question = ({
               });
           }}
           disabled={newAnswer === question.answer}
-        ></Button>
+        >Actualizar respuesta</Button>
         <Button
-          text="Eliminar cambios"
           action={() => {
             const fieldBox = document.querySelector(
               `#ID${question._id}`
@@ -78,19 +76,16 @@ const Question = ({
             if (fieldBox) fieldBox.value = question.answer;
           }}
           disabled={newAnswer === question.answer}
-        ></Button>
+        >Eliminar cambios</Button>
         <Button
-          text="Eliminar pregunta"
           action={() => {
             openModal(
               <div>
                 <p>Alerta, va a borrar la pregunta seleccionada</p>
-                <List
-                  space={32}
-                  content={[
+                <List space={32}>
+                  {[
                     <Button
                       key="confirmar"
-                      text="confirmar"
                       action={() => {
                         deleteQuestionRequest(question._id)
                           .then((res) => {
@@ -101,20 +96,19 @@ const Question = ({
                           });
                         updateQuestions();
                       }}
-                    ></Button>,
+                    >confirmar</Button>,
                     <Button
                       key="cancelar"
-                      text="cancelar"
                       action={() => {
                         closeModal();
                       }}
-                    ></Button>,
+                    >cancelar</Button>,
                   ]}
-                ></List>
+                </List>
               </div>
             );
           }}
-        ></Button>
+        >Eliminar pregunta</Button>
       </div>
     </article>
   );

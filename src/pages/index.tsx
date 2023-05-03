@@ -14,6 +14,7 @@ import { ModalContext } from "@/contexts/modal";
 import Link from "next/link";
 import Button from "@/components/Shared/Button";
 import { UserContext } from "@/contexts/user";
+import Contact from "@/components/Sections/contact/Contact";
 
 const Home = () => {
   const { isVisible } = useContext(ModalContext);
@@ -37,12 +38,18 @@ const Home = () => {
         <section className={styles.mainSection}>
           <About></About>
         </section>
+        <section id="contacto" className={styles.mainSection}>
+          <Contact></Contact>
+        </section>
       </main>
       <Footer></Footer>
       {isVisible && <Modal></Modal>}
       {hasAuth() && (
         <Link href="/administracion" className="admin-btn">
-          <Button isMain={false} text="Admin" action={() => {}}></Button>
+          <Button
+            mode="secondaryButton"
+            action={() => {}}
+          >Admin</Button>
         </Link>
       )}
     </div>

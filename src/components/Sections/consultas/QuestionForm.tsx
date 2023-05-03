@@ -37,12 +37,10 @@ const QuestionForm = ({ setUserQuestions }: any) => {
       <div>
         <p>Confirme que desea enviar la siguiente pregunta:</p>
         <p>{formData.question}</p>
-        <List
-          distribution="center"
-          content={[
+        <List distribution="center">
+          {[
             <Button
               key="accept"
-              text={"Confirmar"}
               action={async () => {
                 openModal(<Spinner></Spinner>);
                 await createNewQuestionRequest(
@@ -54,20 +52,21 @@ const QuestionForm = ({ setUserQuestions }: any) => {
                   question: "",
                   subscribe: true,
                 });
-                setUserQuestions(await getUserQuestionsRequest(userData?.email));
+                setUserQuestions(
+                  await getUserQuestionsRequest(userData?.email)
+                );
                 closeModal();
               }}
-            ></Button>,
+            >Confirmar</Button>,
             <Button
               key="reject"
-              text={"Cancelar"}
               action={(e: any) => {
                 e.preventDefault();
                 closeModal();
               }}
-            ></Button>,
+            >Cancelar</Button>,
           ]}
-        ></List>
+        </List>
       </div>
     );
   };
@@ -100,17 +99,19 @@ const QuestionForm = ({ setUserQuestions }: any) => {
           Deseo recibir un aviso por email cuando mi pregunta sea contestada
         </span>
       </label>
-      <List
-        content={[
+      <List>
+        {[
           <Button
             key="accept"
-            text={"Enviar pregunta"}
             action={() => {}}
             disabled={formData.question === ""}
-          ></Button>,
-          <Button key="reject" text={"Cancelar"} action={closeModal}></Button>,
+          >Enviar pregunta</Button>,
+          <Button
+            key="reject"
+            action={closeModal}
+          >Cancelar</Button>,
         ]}
-      ></List>
+      </List>
     </form>
   );
 };

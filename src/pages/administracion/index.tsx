@@ -51,61 +51,57 @@ const Index = () => {
         <h3>Listado de preguntas</h3>
         <Button
           key="button"
-          text={onlyUnanswered ? "Solo sin contestar" : "Todas las preguntas"}
           action={() => {
             setOnlyUnanswered((oldValue) => !oldValue);
           }}
-          isMain={!onlyUnanswered}
-        ></Button>
+          
+          mode={onlyUnanswered? "secondaryButton":"mainButton"}
+        >{
+          onlyUnanswered ? "Solo sin contestar" : "Todas las preguntas"
+        }</Button>
         <Button
           key="button"
-          text={showFaq ? "Mostrando Faq" : "No mostrando Faq"}
           action={() => {
             setShowFaq((oldValue) => !oldValue);
           }}
-          isMain={!showFaq}
-        ></Button>
-        <List
-          marginTop={true}
-          content={[
+          mode={showFaq?"secondaryButton":"mainButton"}
+        >{showFaq ? "Mostrando Faq" : "No mostrando Faq"}</Button>
+        <List marginTop={true}>
+          {[
             <Button
               key="prev"
-              text="<"
               action={() => {
                 setPage((oldValue) => Math.max(0, oldValue - 1));
               }}
               disabled={page === 0}
-            ></Button>,
+            >{"<"}</Button>,
             <span key="page">{page}</span>,
             <Button
               key="next"
-              text=">"
               disabled={page === maxPage}
               action={() => {
                 setPage((oldValue) => Math.min(maxPage, oldValue + 1));
               }}
-            ></Button>,
+            >{">"}</Button>,
           ]}
-        ></List>
+        </List>
 
         {loading ? (
           <Spinner></Spinner>
         ) : (
-          <List
-            marginTop={true}
-            direction="column"
-            content={questions.map((q: IQuestion) => (
+          <List marginTop={true} direction="column">
+            {questions.map((q: IQuestion) => (
               <Question
                 key={q._id}
                 question={q}
                 updateQuestions={getPageOfQuestions}
               ></Question>
             ))}
-          ></List>
+          </List>
         )}
       </main>
       <Link href="/" className="admin-btn">
-        <Button isMain={false} text="Home" action={() => {}}></Button>
+        <Button mode="secondaryButton" action={() => {}}>Home</Button>
       </Link>
       {isVisible && <Modal></Modal>}
     </div>

@@ -36,12 +36,11 @@ const Forum = () => {
       <h2>Consultas</h2>
       {userData?.email ? (
         <div className="separatedBlock">
-          <List
-            content={[
+          <List>
+            {[
               <h3 key="title">Mis preguntas</h3>,
               <Button
                 key="button"
-                text="Nueva Consulta"
                 action={() =>
                   openModal(
                     <QuestionForm
@@ -49,14 +48,14 @@ const Forum = () => {
                     ></QuestionForm>
                   )
                 }
-              ></Button>,
+              >
+                "Nueva Consulta"
+              </Button>,
             ]}
-          ></List>
+          </List>
           <h4>Mis consultas previas</h4>
-          <List
-            maxHeight={600}
-            padding={true}
-            content={userQuestions.map((question: IQuestion) => (
+          <List maxHeight={600} padding={true} direction="column">
+            {userQuestions.map((question: IQuestion) => (
               <Question
                 key={question._id}
                 question={question.question}
@@ -64,8 +63,7 @@ const Forum = () => {
                 image={userData.picture}
               ></Question>
             ))}
-            direction="column"
-          ></List>
+          </List>
         </div>
       ) : (
         <div className="separatedBlock">

@@ -2,16 +2,17 @@ import React from "react";
 
 import styles from "./Button.module.scss";
 
+
 const Button = ({
-  text,
   action,
-  isMain = true,
+  mode = "mainButton",
   disabled = false,
+  children = "",
 }: {
-  text: string;
   action: any;
-  isMain?: boolean;
+  mode?: string;
   disabled?: boolean;
+  children: any;
 }) => {
   const handleClick = (e: any) => {
     action();
@@ -19,14 +20,14 @@ const Button = ({
   return (
     <button
       disabled={disabled}
-      className={`${styles.button} ${
-        isMain ? styles.mainButton : styles.secondaryButton
-      } ${disabled ? styles.disabled : ""}`}
+      className={`${styles.button} ${styles[mode]} ${
+        disabled ? styles.disabled : ""
+      }`}
       onClick={(e) => {
         handleClick(e);
       }}
     >
-      {text}
+      {children}
     </button>
   );
 };

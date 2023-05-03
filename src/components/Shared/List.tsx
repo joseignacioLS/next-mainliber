@@ -3,16 +3,18 @@ import React from "react";
 const List = ({
   direction = "row",
   distribution = "flex-start",
+  aligment = "center",
   space = 16,
-  content = null,
+  children = null,
   marginTop = false,
   maxHeight = 0,
   padding = false,
 }: {
   direction?: "row" | "column";
   distribution?: "center" | "flex-start" | "flex-end" | "space-between";
+  aligment?: "center" | "flex-start" | "flex-end";
   space?: number;
-  content: any;
+  children: any;
   marginTop?: boolean;
   maxHeight?: number;
   padding?: boolean;
@@ -24,7 +26,7 @@ const List = ({
         display: "flex",
         flexDirection: direction,
         justifyContent: distribution,
-        alignItems: "center",
+        alignItems: aligment,
         gap: space + "px",
         marginTop: marginTop ? "1rem" : "0",
         maxHeight: maxHeight > 0 ? maxHeight + "px" : "infinite",
@@ -32,7 +34,7 @@ const List = ({
         padding: padding ? "1rem" : 0,
       }}
     >
-      {content}
+      {children}
     </div>
   );
 };

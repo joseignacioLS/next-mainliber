@@ -29,8 +29,8 @@ const QuestionSearch = () => {
     <>
       <h3>Buscador</h3>
 
-      <List
-        content={[
+      <List>
+        {[
           <input
             key="input"
             className={styles.queryInput}
@@ -40,11 +40,10 @@ const QuestionSearch = () => {
           />,
           <Button
             key="search"
-            text="Buscar"
             action={updateQuestionsOnQuery}
-          ></Button>,
+          >Buscar</Button>,
         ]}
-      ></List>
+      </List>
       {isLoading ? (
         <Spinner></Spinner>
       ) : (
@@ -52,22 +51,21 @@ const QuestionSearch = () => {
           maxHeight={600}
           padding={true}
           marginTop={true}
-          content={
-            searchQuestions?.length > 0 ? (
-              searchQuestions.map((question: IQuestion) => (
-                <Question
-                  key={question._id}
-                  question={question.question}
-                  answer={question.answer}
-                  showAvatar={false}
-                ></Question>
-              ))
-            ) : (
-              <span>{initSearch ? "Búsqueda sin resultados" : ""}</span>
-            )
-          }
           direction="column"
-        ></List>
+        >
+          {searchQuestions?.length > 0 ? (
+            searchQuestions.map((question: IQuestion) => (
+              <Question
+                key={question._id}
+                question={question.question}
+                answer={question.answer}
+                showAvatar={false}
+              ></Question>
+            ))
+          ) : (
+            <span>{initSearch ? "Búsqueda sin resultados" : ""}</span>
+          )}
+        </List>
       )}
     </>
   );
