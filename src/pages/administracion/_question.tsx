@@ -67,7 +67,9 @@ const Question = ({
               });
           }}
           disabled={newAnswer === question.answer}
-        >Actualizar respuesta</Button>
+        >
+          Actualizar respuesta
+        </Button>
         <Button
           action={() => {
             const fieldBox = document.querySelector(
@@ -76,39 +78,43 @@ const Question = ({
             if (fieldBox) fieldBox.value = question.answer;
           }}
           disabled={newAnswer === question.answer}
-        >Eliminar cambios</Button>
+        >
+          Eliminar cambios
+        </Button>
         <Button
           action={() => {
             openModal(
               <div>
                 <p>Alerta, va a borrar la pregunta seleccionada</p>
                 <List space={32}>
-                  {[
-                    <Button
-                      key="confirmar"
-                      action={() => {
-                        deleteQuestionRequest(question._id)
-                          .then((res) => {
-                            openModal(<p>Pregunta eliminada</p>);
-                          })
-                          .catch((err) => {
-                            openModal(<p>Error eliminando la pregunta</p>);
-                          });
-                        updateQuestions();
-                      }}
-                    >confirmar</Button>,
-                    <Button
-                      key="cancelar"
-                      action={() => {
-                        closeModal();
-                      }}
-                    >cancelar</Button>,
-                  ]}
+                  <Button
+                    action={() => {
+                      deleteQuestionRequest(question._id)
+                        .then((res) => {
+                          openModal(<p>Pregunta eliminada</p>);
+                        })
+                        .catch((err) => {
+                          openModal(<p>Error eliminando la pregunta</p>);
+                        });
+                      updateQuestions();
+                    }}
+                  >
+                    confirmar
+                  </Button>
+                  <Button
+                    action={() => {
+                      closeModal();
+                    }}
+                  >
+                    cancelar
+                  </Button>
                 </List>
               </div>
             );
           }}
-        >Eliminar pregunta</Button>
+        >
+          Eliminar pregunta
+        </Button>
       </div>
     </article>
   );

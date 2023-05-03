@@ -9,14 +9,16 @@ const List = ({
   marginTop = false,
   maxHeight = 0,
   padding = false,
+  maxWidth = 0,
 }: {
   direction?: "row" | "column";
-  distribution?: "center" | "flex-start" | "flex-end" | "space-between";
+  distribution?: "center" | "flex-start" | "flex-end" | "space-between" | "space-evenly";
   aligment?: "center" | "flex-start" | "flex-end";
   space?: number;
   children: any;
   marginTop?: boolean;
   maxHeight?: number;
+  maxWidth?: number;
   padding?: boolean;
 }) => {
   return (
@@ -29,7 +31,8 @@ const List = ({
         alignItems: aligment,
         gap: space + "px",
         marginTop: marginTop ? "1rem" : "0",
-        maxHeight: maxHeight > 0 ? maxHeight + "px" : "infinite",
+        maxHeight: maxHeight > 0 ? maxHeight + "px" : "initial",
+        maxWidth: maxWidth > 0 ? maxWidth + "px" : "initial",
         overflowY: maxHeight > 0 ? "auto" : "visible",
         padding: padding ? "1rem" : 0,
       }}

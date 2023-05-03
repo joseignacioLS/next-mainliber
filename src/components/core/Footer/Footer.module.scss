@@ -1,24 +1,22 @@
 @import "../../../styles/variables";
 
-.footer{
+.footer {
   margin-top: 3rem;
   padding: 1rem 0;
 
   color: white;
   background-color: $tint1;
 
-  display: flex;
-  justify-content: space-around;
-  align-items: flex-start;
+  a{
+    width: 100%;;
+  }
 
-  &Column {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+  &ColumnTitle {
+    width: 100%;
 
-    &Title {
-      font-weight: 700;
-    }
+    border-bottom: 1px solid white;
+
+    text-align: center;
+    font-weight: 700;
   }
 }

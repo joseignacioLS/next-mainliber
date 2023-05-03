@@ -37,21 +37,18 @@ const Forum = () => {
       {userData?.email ? (
         <div className="separatedBlock">
           <List>
-            {[
-              <h3 key="title">Mis preguntas</h3>,
-              <Button
-                key="button"
-                action={() =>
-                  openModal(
-                    <QuestionForm
-                      setUserQuestions={setUserQuestions}
-                    ></QuestionForm>
-                  )
-                }
-              >
-                Nueva Consulta
-              </Button>,
-            ]}
+            <h3>Mis preguntas</h3>
+            <Button
+              action={() =>
+                openModal(
+                  <QuestionForm
+                    setUserQuestions={setUserQuestions}
+                  ></QuestionForm>
+                )
+              }
+            >
+              Nueva Consulta
+            </Button>
           </List>
           <h4>Mis consultas previas</h4>
           <List maxHeight={600} padding={true} direction="column">

@@ -30,19 +30,13 @@ const QuestionSearch = () => {
       <h3>Buscador</h3>
 
       <List>
-        {[
-          <input
-            key="input"
-            className={styles.queryInput}
-            value={query}
-            onInput={(e) => handleUserInput(e)}
-            placeholder="Empieza a escribir..."
-          />,
-          <Button
-            key="search"
-            action={updateQuestionsOnQuery}
-          >Buscar</Button>,
-        ]}
+        <input
+          className={styles.queryInput}
+          value={query}
+          onInput={(e) => handleUserInput(e)}
+          placeholder="Empieza a escribir..."
+        />
+        <Button action={updateQuestionsOnQuery}>Buscar</Button>
       </List>
       {isLoading ? (
         <Spinner></Spinner>

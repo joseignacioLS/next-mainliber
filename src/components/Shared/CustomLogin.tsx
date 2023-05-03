@@ -7,34 +7,14 @@ import { ModalContext } from "@/contexts/modal";
 import List from "./List";
 
 const CustomLogin = () => {
-  const { userData, storeUserData, logout } = useContext(UserContext);
+  const { userData, storeUserData, logout, login } = useContext(UserContext);
   const { openModal } = useContext(ModalContext);
-  const login = useGoogleLogin({
+  const googleLogin = useGoogleLogin({
     onSuccess: (token) => {
-      getUserInformation(token);
+      if (!login(token)) openModal(<p>Login Error</p>);
     },
   });
 
-  const getUserInformation = async (token: any) => {
-    const res = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
-      headers: {
-        Authorization: `Bearer ${token.access_token}`,
-      },
-    });
-    if (res.status === 200) {
-      const data = await res.json();
-      storeUserData({ ...data, token });
-    } else {
-      logout();
-      openModal(<p>Error de credenciales, trata de volver a iniciar sesión</p>);
-    }
-  };
-
-  useEffect(() => {
-    if (userData.isLogged) {
-      getUserInformation(userData.token);
-    }
-  }, [userData.isLogged, userData.token]);
   return (
     <>
       {userData.isLogged ? (
@@ -45,14 +25,12 @@ const CustomLogin = () => {
           </Button>
         </>
       ) : (
-        <Button action={() => login()} mode="blankButton">
+        <Button action={() => googleLogin()} mode="blankButton">
           <List>
-            {
-              <img
-                width="30"
-                src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
-              />
-            }
+            <img
+              width="30"
+              src="https://lh3.googleusercontent.com/COxitqgJr1sJnIDe8-jiKhxDx1FrYbtRHKJ9z_hELisAlapwE9LUPh6fcXIfb5vwpbMl4xl9H9TRFPc5NOO8Sb3VSgIBrfRYvW6cUA"
+            />
           </List>
         </Button>
       )}

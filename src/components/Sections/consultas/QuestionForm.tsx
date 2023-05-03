@@ -38,34 +38,32 @@ const QuestionForm = ({ setUserQuestions }: any) => {
         <p>Confirme que desea enviar la siguiente pregunta:</p>
         <p>{formData.question}</p>
         <List distribution="center">
-          {[
-            <Button
-              key="accept"
-              action={async () => {
-                openModal(<Spinner></Spinner>);
-                await createNewQuestionRequest(
-                  userData.email,
-                  formData.question,
-                  formData.subscribe
-                );
-                setFormData({
-                  question: "",
-                  subscribe: true,
-                });
-                setUserQuestions(
-                  await getUserQuestionsRequest(userData?.email)
-                );
-                closeModal();
-              }}
-            >Confirmar</Button>,
-            <Button
-              key="reject"
-              action={(e: any) => {
-                e.preventDefault();
-                closeModal();
-              }}
-            >Cancelar</Button>,
-          ]}
+          <Button
+            action={async () => {
+              openModal(<Spinner></Spinner>);
+              await createNewQuestionRequest(
+                userData.email,
+                formData.question,
+                formData.subscribe
+              );
+              setFormData({
+                question: "",
+                subscribe: true,
+              });
+              setUserQuestions(await getUserQuestionsRequest(userData?.email));
+              closeModal();
+            }}
+          >
+            Confirmar
+          </Button>
+          <Button
+            action={(e: any) => {
+              e.preventDefault();
+              closeModal();
+            }}
+          >
+            Cancelar
+          </Button>
         </List>
       </div>
     );
@@ -100,17 +98,10 @@ const QuestionForm = ({ setUserQuestions }: any) => {
         </span>
       </label>
       <List>
-        {[
-          <Button
-            key="accept"
-            action={() => {}}
-            disabled={formData.question === ""}
-          >Enviar pregunta</Button>,
-          <Button
-            key="reject"
-            action={closeModal}
-          >Cancelar</Button>,
-        ]}
+        <Button action={() => {}} disabled={formData.question === ""}>
+          Enviar pregunta
+        </Button>
+        <Button action={closeModal}>Cancelar</Button>
       </List>
     </form>
   );

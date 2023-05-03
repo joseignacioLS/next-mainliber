@@ -12,12 +12,12 @@ const Menu = () => {
   ) => {
     let modSection = "servicios";
     if (!faqSection || !forumSection || !contactSection) return;
-    if (window.scrollY >= faqSection.offsetTop) {
+    if (window.scrollY >= contactSection.offsetTop) {
+      modSection = "contacto";
+    } else if (window.scrollY >= faqSection.offsetTop) {
       modSection = "faq";
     } else if (window.scrollY >= forumSection.offsetTop) {
       modSection = "consultas";
-    } else if (window.scrollY >= contactSection.offsetTop) {
-      modSection = "contacto";
     }
     setCurrentSection(modSection);
   };

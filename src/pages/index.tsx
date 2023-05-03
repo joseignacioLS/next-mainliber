@@ -6,7 +6,6 @@ import Header from "@/components/core/Header/Header";
 import Footer from "@/components/core/Footer/Footer";
 import Forum from "@/components/Sections/consultas/Forum";
 import FAQ from "@/components/Sections/faq/FAQ";
-import About from "@/components/Sections/about/About";
 import Services from "@/components/Sections/services/Services";
 import Collaborators from "@/components/Sections/collaborators/Collaborators";
 import Modal from "@/components/core/Modal/Modal";
@@ -35,9 +34,9 @@ const Home = () => {
         <section id="faq" className={styles.mainSection}>
           <FAQ></FAQ>
         </section>
-        <section className={styles.mainSection}>
+        {/* <section className={styles.mainSection}>
           <About></About>
-        </section>
+        </section> */}
         <section id="contacto" className={styles.mainSection}>
           <Contact></Contact>
         </section>
@@ -46,10 +45,9 @@ const Home = () => {
       {isVisible && <Modal></Modal>}
       {hasAuth() && (
         <Link href="/administracion" className="admin-btn">
-          <Button
-            mode="secondaryButton"
-            action={() => {}}
-          >Admin</Button>
+          <Button mode="secondaryButton" action={() => {}}>
+            Admin
+          </Button>
         </Link>
       )}
     </div>

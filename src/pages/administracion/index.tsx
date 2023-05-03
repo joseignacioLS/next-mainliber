@@ -50,7 +50,6 @@ const Index = () => {
         <h2>Panel de administración</h2>
         <h3>Listado de preguntas</h3>
         <Button
-          key="button"
           action={() => {
             setOnlyUnanswered((oldValue) => !oldValue);
           }}
@@ -59,7 +58,6 @@ const Index = () => {
           {onlyUnanswered ? "Solo sin contestar" : "Todas las preguntas"}
         </Button>
         <Button
-          key="button"
           action={() => {
             setShowFaq((oldValue) => !oldValue);
           }}
@@ -68,27 +66,23 @@ const Index = () => {
           {showFaq ? "Mostrando Faq" : "No mostrando Faq"}
         </Button>
         <List marginTop={true}>
-          {[
-            <Button
-              key="prev"
-              action={() => {
-                setPage((oldValue) => Math.max(0, oldValue - 1));
-              }}
-              disabled={page === 0}
-            >
-              {"<"}
-            </Button>,
-            <span key="page">{page}</span>,
-            <Button
-              key="next"
-              disabled={page === maxPage}
-              action={() => {
-                setPage((oldValue) => Math.min(maxPage, oldValue + 1));
-              }}
-            >
-              {">"}
-            </Button>,
-          ]}
+          <Button
+            action={() => {
+              setPage((oldValue) => Math.max(0, oldValue - 1));
+            }}
+            disabled={page === 0}
+          >
+            {"<"}
+          </Button>
+          <span>{page}</span>
+          <Button
+            disabled={page === maxPage}
+            action={() => {
+              setPage((oldValue) => Math.min(maxPage, oldValue + 1));
+            }}
+          >
+            {">"}
+          </Button>
         </List>
 
         {loading ? (
