@@ -34,9 +34,6 @@ const Home = () => {
         <section id="faq" className={styles.mainSection}>
           <FAQ></FAQ>
         </section>
-        {/* <section className={styles.mainSection}>
-          <About></About>
-        </section> */}
         <section id="contacto" className={styles.mainSection}>
           <Contact></Contact>
         </section>

@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import Modal from "@/components/core/Modal/Modal";
 import { ModalContext } from "@/contexts/modal";
 import Spinner from "@/components/Shared/Spinner";
+import Head from "next/head";
 
 const Index = () => {
   const [page, setPage] = useState(0);
@@ -46,6 +47,9 @@ const Index = () => {
   }, [userData, hasAuth, router]);
   return (
     <div className="layout">
+      <Head>
+        <title>Panel de Control - MainLiber</title>
+      </Head>
       <main>
         <h2>Panel de administración</h2>
         <h3>Listado de preguntas</h3>

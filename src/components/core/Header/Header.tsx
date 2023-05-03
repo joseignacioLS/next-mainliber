@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Head>
-        <title>MainLiber</title>
+        <title>MainLiber Seguros</title>
       </Head>
       <div className={styles.loginContainer}>
         <GoogleLogin></GoogleLogin>
