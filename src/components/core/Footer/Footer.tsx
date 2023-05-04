@@ -21,35 +21,55 @@ const Footer = () => {
             <span className={styles.footerColumnTitle}>Redes</span>
             <a href="" target="_blank">
               <List>
-                <img height="24" src="/assets/logos/rrss/twitter.png" />
+                <img
+                  height="24"
+                  src="/assets/logos/rrss/twitter.png"
+                  alt="twitter logo"
+                />
                 <span>Twitter</span>
               </List>
             </a>
 
             <a href="" target="_blank">
               <List>
-                <img height="24" src="/assets/logos/rrss/facebook.png" />
+                <img
+                  height="24"
+                  src="/assets/logos/rrss/facebook.png"
+                  alt="facebook logo"
+                />
                 <span>Facebook</span>
               </List>
             </a>
 
             <a href="" target="_blank">
               <List>
-                <img height="24" src="/assets/logos/rrss/instagram.png" />
+                <img
+                  height="24"
+                  src="/assets/logos/rrss/instagram.png"
+                  alt="instagram logo"
+                />
                 <span>Instagram</span>
               </List>
             </a>
 
             <a href="" target="_blank">
               <List>
-                <img height="24" src="/assets/logos/rrss/linkedin.png" />
+                <img
+                  height="24"
+                  src="/assets/logos/rrss/linkedin.png"
+                  alt="linkedin logo"
+                />
                 <span>Linkedin</span>
               </List>
             </a>
 
             <a href="" target="_blank">
               <List>
-                <img height="24" src="/assets/logos/rrss/youtube.png" />
+                <img
+                  height="24"
+                  src="/assets/logos/rrss/youtube.png"
+                  alt="youtube logo"
+                />
                 <span>Youtube</span>
               </List>
             </a>

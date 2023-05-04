@@ -21,6 +21,7 @@ interface IGoogleData {
 interface IUserData extends IGoogleData {
   token: IToken;
   isLogged: boolean;
+  isAdmin: boolean;
 }
 
 interface IContextData {
@@ -28,7 +29,6 @@ interface IContextData {
   logout: () => void;
   storeUserData: (data: IUserData) => void;
   userData: IUserData;
-  hasAuth: () => boolean;
 }
 
 export const UserContext = createContext({} as IContextData);
@@ -45,6 +45,7 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
     picture: "",
     verified_email: false,
     isLogged: false,
+    isAdmin: false,
     token: {
       access_token: "",
       authuser: "",
@@ -89,19 +90,19 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
   const login = async (token: IToken) => {
     const userGoogleData = await getUserInformation(token);
     if (!userGoogleData) return null;
-    storeUserData({ ...userGoogleData, token, isLogged: true });
+    storeUserData({
+      ...userGoogleData,
+      token,
+      isLogged: true,
+      isAdmin: authUsers.includes(userGoogleData?.email?.toLowerCase()),
+    });
     return true;
   };
 
   const logout = () => {
-    const data = { isLogged: false } as IUserData;
+    const data = { isLogged: false, isAdmin: false } as IUserData;
     setUserData(data);
     saveInLocalStorage(data);
-  };
-
-  const hasAuth = () => {
-    if (!localStorageChecked) return true;
-    return authUsers.includes(userData?.email?.toLowerCase());
   };
 
   const checkLogState = async () => {
@@ -109,15 +110,16 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
     setLocalStorageChecked(true);
     if (localStorageData === null) return logout();
     if (!localStorageData.token?.access_token) return logout();
+    login(localStorageData.token);
 
-    const userGoogleData = await getUserInformation(localStorageData.token);
-    if (userGoogleData === null) return logout();
+    // const userGoogleData = await getUserInformation(localStorageData.token);
+    // if (userGoogleData === null) return logout();
 
-    storeUserData({
-      token: localStorageData.token,
-      ...userGoogleData,
-      isLogged: true,
-    });
+    // storeUserData({
+    //   token: localStorageData.token,
+    //   ...userGoogleData,
+    //   isLogged: true,
+    // });
   };
 
   useEffect(() => {
@@ -127,7 +129,6 @@ export const UserContextProvider = ({ children }: { children: ReactNode }) => {
   return (
     <UserContext.Provider
       value={{
-        hasAuth,
         logout,
         storeUserData,
         userData,

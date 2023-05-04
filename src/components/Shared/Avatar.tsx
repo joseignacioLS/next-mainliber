@@ -15,7 +15,7 @@ const Avatar = ({
 }) => {
   return (
     <div className={`${styles.avatar} ${className}`} style={{ height: height + "rem" }}>
-      <img src={picture} style={{ width: height - 1 + "rem" }} />
+      <img src={picture} style={{ width: height - 1 + "rem" }} alt="imagen de perfil del usuario" />
       {name && <span>{name}</span>}
     </div>
   );

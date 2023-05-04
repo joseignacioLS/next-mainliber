@@ -10,17 +10,21 @@ import QuestionForm from "./QuestionForm";
 import QuestionSearch from "./QuestionSearch";
 import { ModalContext } from "@/contexts/modal";
 import Button from "@/components/Shared/Button";
+import Spinner from "@/components/Shared/Spinner";
 
 const Forum = () => {
   const { userData } = useContext(UserContext);
   const [userQuestions, setUserQuestions] = useState([] as IQuestion[]);
+  const [isLoadedQuestions, setIsLoadedQuestions] = useState(false);
   const { openModal } = useContext(ModalContext);
 
   const updateQuestionsOnUser = () => {
     if (!userData?.email) return;
+    setIsLoadedQuestions(false);
     getUserQuestionsRequest(userData?.email)
       .then((data) => {
         setUserQuestions(data);
+        setIsLoadedQuestions(true);
       })
       .catch((err) => {
         console.log(err);
@@ -52,14 +56,18 @@ const Forum = () => {
           </List>
           <h4>Mis consultas previas</h4>
           <List maxHeight={600} padding={true} direction="column">
-            {userQuestions.map((question: IQuestion) => (
-              <Question
-                key={question._id}
-                question={question.question}
-                answer={question.answer}
-                image={userData.picture}
-              ></Question>
-            ))}
+            {isLoadedQuestions ? (
+              userQuestions.map((question: IQuestion) => (
+                <Question
+                  key={question._id}
+                  question={question.question}
+                  answer={question.answer}
+                  image={userData.picture}
+                ></Question>
+              ))
+            ) : (
+              <Spinner></Spinner>
+            )}
           </List>
         </div>
       ) : (

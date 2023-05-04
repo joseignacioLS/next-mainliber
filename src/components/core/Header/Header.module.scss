@@ -8,6 +8,7 @@
 
   background-color: $tint1;
 
+
   .loginContainer {
     position: absolute;
     top: .5rem;
@@ -38,6 +39,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
+    h1 {
+      img {
+        mix-blend-mode: plus-lighter;
+      }
+    }
 
 
     @media (max-width: 800px) {

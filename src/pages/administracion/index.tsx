@@ -5,7 +5,6 @@ import List from "@/components/Shared/List";
 import Question from "@/pages/administracion/_question";
 import { UserContext } from "@/contexts/user";
 import { IQuestion, getPageOfQuestionsRequest } from "@/services/api";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import Modal from "@/components/core/Modal/Modal";
 import { ModalContext } from "@/contexts/modal";
@@ -21,7 +20,7 @@ const Index = () => {
   const [onlyUnanswered, setOnlyUnanswered] = useState(false);
   const [showFaq, setShowFaq] = useState(false);
 
-  const { userData, hasAuth } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
   const { isVisible } = useContext(ModalContext);
   const router = useRouter();
 
@@ -42,9 +41,9 @@ const Index = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      if (!hasAuth()) router.push("/");
+      if (!userData.isAdmin) router.push("/");
     }, 5);
-  }, [userData, hasAuth, router]);
+  }, [userData, userData.isAdmin, router]);
   return (
     <div className="layout">
       <Head>
@@ -59,7 +58,9 @@ const Index = () => {
           }}
           mode={onlyUnanswered ? "secondaryButton" : "mainButton"}
         >
-          {onlyUnanswered ? "Solo sin contestar" : "Todas las preguntas"}
+          {onlyUnanswered
+            ? "Mostrar preguntas contestadas"
+            : "Ocultar preguntas contestadas"}
         </Button>
         <Button
           action={() => {
@@ -67,7 +68,7 @@ const Index = () => {
           }}
           mode={showFaq ? "secondaryButton" : "mainButton"}
         >
-          {showFaq ? "Mostrando Faq" : "No mostrando Faq"}
+          {showFaq ? "Ocultar FAQ" : "Mostrar Faq"}
         </Button>
         <List marginTop={true}>
           <Button
@@ -103,11 +104,11 @@ const Index = () => {
           </List>
         )}
       </main>
-      <Link href="/" className="admin-btn">
-        <Button mode="secondaryButton" action={() => {}}>
+      <div className="admin-btn">
+        <Button mode="secondaryButton" action={() => {}} redirect="/">
           Home
         </Button>
-      </Link>
+      </div>
       {isVisible && <Modal></Modal>}
     </div>
   );

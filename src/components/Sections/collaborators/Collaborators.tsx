@@ -25,6 +25,7 @@ const Collaborators = () => {
               key={logo + "_" + i}
               src={"/assets/logos/" + logo}
               height="100px"
+              alt={`logo del colaborador ${logo.split(".")[0]}`}
             />
           ))}
         </div>

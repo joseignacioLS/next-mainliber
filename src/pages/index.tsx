@@ -17,7 +17,7 @@ import Contact from "@/components/Sections/contact/Contact";
 
 const Home = () => {
   const { isVisible } = useContext(ModalContext);
-  const { hasAuth } = useContext(UserContext);
+  const { userData } = useContext(UserContext);
   return (
     <div className="layout">
       <Header></Header>
@@ -40,12 +40,16 @@ const Home = () => {
       </main>
       <Footer></Footer>
       {isVisible && <Modal></Modal>}
-      {hasAuth() && (
-        <Link href="/administracion" className="admin-btn">
-          <Button mode="secondaryButton" action={() => {}}>
+      {userData.isAdmin && (
+        <div className="admin-btn">
+          <Button
+            mode="secondaryButton"
+            redirect="/administracion"
+            action={() => {}}
+          >
             Admin
           </Button>
-        </Link>
+        </div>
       )}
     </div>
   );
