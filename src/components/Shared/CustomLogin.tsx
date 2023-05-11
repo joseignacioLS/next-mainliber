@@ -19,7 +19,7 @@ const CustomLogin = () => {
     <>
       {userData.isLogged ? (
         <>
-          <Avatar picture={userData.picture} height={5}></Avatar>
+          <Avatar picture={userData.picture} height={3}></Avatar>
           <Button action={() => logout()} mode="blankButton">
             Logout
           </Button>

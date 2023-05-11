@@ -57,14 +57,18 @@ const Forum = () => {
           <h4>Mis consultas previas</h4>
           <List maxHeight={600} padding={true} direction="column">
             {isLoadedQuestions ? (
-              userQuestions.map((question: IQuestion) => (
-                <Question
-                  key={question._id}
-                  question={question.question}
-                  answer={question.answer}
-                  image={userData.picture}
-                ></Question>
-              ))
+              userQuestions.length > 0 ? (
+                userQuestions.map((question: IQuestion) => (
+                  <Question
+                    key={question._id}
+                    question={question.question}
+                    answer={question.answer}
+                    image={userData.picture}
+                  ></Question>
+                ))
+              ) : (
+                <span>No hay consultas previas</span>
+              )
             ) : (
               <Spinner></Spinner>
             )}

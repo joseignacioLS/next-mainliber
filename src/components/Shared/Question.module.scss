@@ -15,7 +15,7 @@
   box-shadow: $default_shadow;
   border-radius: .5rem;
   overflow: hidden;
-  
+
   .user {
     grid-area: user;
   }
@@ -28,10 +28,9 @@
 
   .answer {
     grid-area: answer;
-    opacity: .8;
     font-size: 1rem;
     padding-left: .5rem;
-    border-left: 1px solid  $tint1;
+    border-left: 1px solid $tint1;
   }
 
   .notAnswered {

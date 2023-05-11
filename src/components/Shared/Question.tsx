@@ -1,17 +1,17 @@
-import React from "react";
+import React, { ReactNode } from "react";
 
 import styles from "./Question.module.scss";
 import Avatar from "@/components/Shared/Avatar";
 
 const Question = ({
   question,
-  answer,
+  answer = "",
   user,
   image = "/assets/iconos/test.png",
   showAvatar = true,
 }: {
   question: string;
-  answer: string | undefined;
+  answer?: string;
   image?: string;
   user?: string;
   showAvatar?: boolean;
@@ -28,9 +28,7 @@ const Question = ({
       )}
       <span className={styles.question}>{question}</span>
       <span
-        className={`${styles.answer} ${
-          answer === undefined && styles.notAnswered
-        }`}
+        className={`${styles.answer} ${answer === "" && styles.notAnswered}`}
       >
         {answer || "Estamos trabajando en contestar esta pregunta"}
       </span>

@@ -32,7 +32,7 @@
   }
 
   .hero {
-    height: 10rem;
+    height: 20rem;
     width: 100%;
     padding: 0 $page_side_padding;
 
@@ -49,6 +49,7 @@
 
     @media (max-width: 800px) {
       padding: 2rem $mobile_side_padding;
+      height: 10rem;
     }
   }
 }
