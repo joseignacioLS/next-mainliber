@@ -75,9 +75,6 @@ const QuestionForm = ({
   return (
     <form
       className={styles.questionForm}
-      onSubmit={(e) => {
-        handleSubmitForm(e);
-      }}
     >
       <h3>Nueva consulta</h3>
       <label>
@@ -102,7 +99,10 @@ const QuestionForm = ({
         </span>
       </label>
       <List>
-        <Button action={() => {}} disabled={formData.question === ""}>
+        <Button
+          action={(e) => handleSubmitForm(e)}
+          disabled={formData.question === ""}
+        >
           Enviar pregunta
         </Button>
         <Button action={closeModal}>Cancelar</Button>

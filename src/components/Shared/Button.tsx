@@ -10,7 +10,7 @@ const Button = ({
   children = null,
   redirect = "",
 }: {
-  action: () => void;
+  action: (e: any) => void;
   mode?: string;
   disabled?: boolean;
   children: ReactNode;
@@ -18,7 +18,7 @@ const Button = ({
 }) => {
   const handleClick = (e: any) => {
     e.preventDefault();
-    action();
+    action(e);
   };
   return (
     <button
