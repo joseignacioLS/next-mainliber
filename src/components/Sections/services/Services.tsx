@@ -75,8 +75,10 @@ const Services = () => {
       <div className={styles.servicesWrap}>
         <Button action={() => handleScroll(selectedCardIndex - 1)}>Prev</Button>
         <div className={styles.services} id="services">
-          {serviceData.map((data) => {
-            return <ServiceCard {...data} />;
+          {serviceData.map(({ key, title, icon, modal }) => {
+            return (
+              <ServiceCard key={key} title={title} icon={icon} modal={modal} />
+            );
           })}
         </div>
         <Button action={() => handleScroll(selectedCardIndex + 1)}>Next</Button>
