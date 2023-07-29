@@ -1,34 +1,29 @@
 @import "../../../styles/variables";
 
-.services {
+
+.servicesWrap {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: auto 1fr auto;
+
+  button {
+    align-self: center;
+  }
+}
+
+.services {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: scroll;
+  padding: 1rem 0;
   gap: 1rem;
 
-  .service {
-    min-width: 10rem;
-    height: 12rem;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 
-    padding: 1rem;
-    border-radius: .5rem;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-
-    box-shadow: $default_shadow;
-
-    transition: scale .1s;
-
-    cursor: pointer;
-
-    img {
-      width: 6rem;
-    }
-
-    &:hover {
-      scale: 1.05;
-    }
+  &::-webkit-scrollbar {
+    display: none;
   }
+
+
 }

@@ -16,7 +16,7 @@ const logos = [
 
 const Collaborators = () => {
   return (
-    <>
+    <section className="mainSection">
       <h2>Nuestras Colaboraciones</h2>
       <div className={styles.collaboratorsContainer}>
         <div className={styles.collaborators}>
@@ -30,7 +30,7 @@ const Collaborators = () => {
           ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };
 

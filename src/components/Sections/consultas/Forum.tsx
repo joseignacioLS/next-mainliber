@@ -36,7 +36,7 @@ const Forum = () => {
   }, [userData?.email]);
 
   return (
-    <>
+    <section id="consultas" className="mainSection">
       <h2>Consultas</h2>
       {userData?.email ? (
         <div className="separatedBlock">
@@ -87,7 +87,7 @@ const Forum = () => {
       <div className="separatedBlock">
         <QuestionSearch></QuestionSearch>
       </div>
-    </>
+    </section>
   );
 };
 

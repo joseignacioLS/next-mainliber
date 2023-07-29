@@ -24,7 +24,7 @@ const FAQ = () => {
     getFaqQuestions();
   }, []);
   return (
-    <>
+    <section id="faq" className="mainSection">
       <h2>Preguntas Frecuentes</h2>
       <List marginTop={true} direction="column">
         {isLoadedQuestions ? (
@@ -42,7 +42,7 @@ const FAQ = () => {
           <Spinner></Spinner>
         )}
       </List>
-    </>
+    </section>
   );
 };
 

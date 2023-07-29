@@ -83,3 +83,13 @@ button {
   left: 1rem;
   bottom: 1rem;
 }
+
+
+.mainSection {
+  width: 100%;
+  padding: 2rem $page_side_padding;
+
+  @media (max-width: 800px) {
+    padding: 2rem $mobile_side_padding;
+  }
+}
