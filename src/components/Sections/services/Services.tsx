@@ -45,16 +45,17 @@ const serviceData: { key: string; title: string; icon: string; modal: any }[] =
 
 const Services = () => {
   const [selectedCardIndex, setSelectedCardIndex] = useState(0);
-  const [services, setServices] = useState<Element | null>(null);
+  const [services, setServices] = useState<HTMLElement | null>(null);
 
   useEffect(() => {
-    setServices(document.querySelector("#services"));
+    setServices(document.querySelector("#services") as HTMLElement);
   }, []);
 
   useEffect(() => {
     services?.addEventListener("scroll", (e) => {
-      const scroll = e?.currentTarget?.scrollLeft;
-      const width = e?.currentTarget?.offsetWidth;
+      const currentTarget = e?.currentTarget as HTMLElement;
+      const scroll = currentTarget?.scrollLeft;
+      const width = currentTarget?.offsetWidth;
       if (!scroll || !width) return;
       const current = Math.round(scroll / width);
       setSelectedCardIndex(current);
@@ -62,6 +63,7 @@ const Services = () => {
   }, [services]);
 
   const handleScroll = (target: number) => {
+    if (!services) return;
     if (target >= serviceData.length) target -= serviceData.length;
     if (target < 0) target += serviceData.length;
     services?.scrollTo({ left: target * services.offsetWidth });
@@ -71,11 +73,7 @@ const Services = () => {
     <section id="servicios" className="mainSection">
       <h2>Nuestros Servicios</h2>
       <div className={styles.servicesWrap}>
-        <Button
-          action={() => handleScroll(selectedCardIndex - 1)}
-        >
-          Prev
-        </Button>
+        <Button action={() => handleScroll(selectedCardIndex - 1)}>Prev</Button>
         <div className={styles.services} id="services">
           {serviceData.map((data) => {
             return <ServiceCard {...data} />;
