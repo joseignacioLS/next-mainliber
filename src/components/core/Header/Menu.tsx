@@ -2,40 +2,9 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./Menu.module.scss";
 
-const menuData: {
-  id: string;
-  text: string;
-  element: Element | null;
-  section: string;
-}[] = [
-  {
-    id: "servicios",
-    text: "Servicios",
-    element: document.querySelector("#servicios"),
-    section: "servicios",
-  },
-  {
-    id: "consultas",
-    text: "Consultas",
-    element: document.querySelector("#consultas"),
-    section: "consultas",
-  },
-  {
-    id: "faq",
-    text: "FAQ",
-    element: document.querySelector("#faq"),
-    section: "faq",
-  },
-  {
-    id: "contacto",
-    text: "Contacto",
-    element: document.querySelector("#contacto"),
-    section: "contacto",
-  },
-];
-
 const Menu = () => {
   const [currentSection, setCurrentSection] = useState("home");
+  const [menuData, setMenuData] = useState<any>([]);
 
   const handleScroll = (
     faqSection: HTMLElement,
@@ -58,6 +27,32 @@ const Menu = () => {
     const faqSection = document.querySelector("#faq") as HTMLElement;
     const forumSection = document.querySelector("#consultas") as HTMLElement;
     const contactSection = document.querySelector("#contacto") as HTMLElement;
+    setMenuData([
+      {
+        id: "servicios",
+        text: "Servicios",
+        element: document?.querySelector("#servicios"),
+        section: "servicios",
+      },
+      {
+        id: "consultas",
+        text: "Consultas",
+        element: document?.querySelector("#consultas"),
+        section: "consultas",
+      },
+      {
+        id: "faq",
+        text: "FAQ",
+        element: document?.querySelector("#faq"),
+        section: "faq",
+      },
+      {
+        id: "contacto",
+        text: "Contacto",
+        element: document?.querySelector("#contacto"),
+        section: "contacto",
+      },
+    ]);
     document.addEventListener("scroll", () => {
       handleScroll(faqSection, forumSection, contactSection);
     });
@@ -66,7 +61,7 @@ const Menu = () => {
 
   return (
     <div className={styles.menu}>
-      {menuData.map((data) => {
+      {menuData.map((data: any) => {
         return (
           <button
             key={data.id}
