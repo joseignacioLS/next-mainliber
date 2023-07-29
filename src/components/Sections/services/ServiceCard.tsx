@@ -5,15 +5,21 @@ import { ModalContext } from "@/contexts/modal";
 const ServiceCard = ({
   title,
   icon,
+  bg,
   modal,
 }: {
   title: string;
   icon: string;
+  bg: string;
   modal: any;
 }) => {
   const { openModal } = useContext(ModalContext);
   return (
-    <div id={title} className={styles.serviceWrap}>
+    <div
+      id={title}
+      className={styles.serviceWrap}
+      style={{ backgroundImage: `url(/assets/imgs/${bg})` }}
+    >
       <div
         className={styles.service}
         onClick={() => {

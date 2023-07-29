@@ -15,7 +15,7 @@ const Header = () => {
           rel="icon"
           type="image/png"
           sizes="32x32"
-          href="https://images.motorflash.com/filter?path=https%3A%2F%2Fwww.gruposala.com%2F%2F%2Fupload%2Fmainliber.png&size=400&format=webp"
+          href="favicon.png"
         ></link>
       </Head>
       <div className={styles.loginContainer}>
@@ -27,11 +27,11 @@ const Header = () => {
       <div className={styles.hero}>
         <h1>
           <img
-            src="https://images.motorflash.com/filter?path=https%3A%2F%2Fwww.gruposala.com%2F%2F%2Fupload%2Fmainliber.png&size=400&format=webp"
+            src="/assets/logos/mainliber.png"
             alt="MainLiber, correduría de seguros"
           />
         </h1>
-        {/* <h1 className={styles.pageTitle}>MainLiber</h1> */}
+        <span className={styles.subtitle}>Correduría de seguros</span>
       </div>
     </header>
   );

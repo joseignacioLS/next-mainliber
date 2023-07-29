@@ -36,7 +36,7 @@ const Forum = () => {
   }, [userData?.email]);
 
   return (
-    <section id="consultas" className="mainSection">
+    <section id="consultas" className="mainSection coloredSection">
       <h2>Consultas</h2>
       {userData?.email ? (
         <div className="separatedBlock">

@@ -10,6 +10,9 @@
   flex-grow: 0;
   flex-shrink: 0;
 }
+.naked {
+  background-color: transparent;
+}
 
 .mainButton {
   background-color: $tint1;

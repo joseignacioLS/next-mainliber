@@ -20,23 +20,24 @@ h1 {
   color: $tint0;
   color: white;
   font-size: 40px;
-  font-family: 'Crete Round', serif;
+  font-family: 'Lato', sans-serif;
   text-align: center;
 }
 
 h2{
   color: $tint1;
-  font-size: 28px;
-  font-family: 'Crete Round', serif;
-  border-bottom: 1px solid $tint0;
+  font-size: 32px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  text-transform: capitalize;
   margin-bottom: .5rem;
 }
 
 h3 {
-  color: $tint2;
+  color: $tint1;
   font-size: 20px;
-  border-bottom: 1px solid $tint0;
   margin-bottom: .5rem;
+  font-weight: 400;
 }
 
 h4 {
@@ -91,5 +92,9 @@ button {
 
   @media (max-width: 800px) {
     padding: 2rem $mobile_side_padding;
+  }
+
+  &.coloredSection {
+    background-color: $_turq_0;
   }
 }

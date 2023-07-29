@@ -5,10 +5,14 @@
   width: 100%;
   flex-shrink: 0;
   scroll-snap-align: center;
+
+  background-position: center;
+  background-size: cover;
+
 }
 
 .service {
-  height: 80vh;
+  height: 40vh;
 
   padding: 1rem;
   border-radius: .5rem;
@@ -18,11 +22,19 @@
   justify-content: space-between;
   align-items: center;
 
-  box-shadow: $default_shadow;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  text-transform: uppercase;
+  color: white;
 
   transition: scale .2s;
 
   cursor: pointer;
+
+  span {
+    text-shadow: 0px 0px 5px black;
+  }
 
   img {
     width: 6rem;
