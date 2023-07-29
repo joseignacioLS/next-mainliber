@@ -2,6 +2,38 @@ import React, { useEffect, useState } from "react";
 
 import styles from "./Menu.module.scss";
 
+const menuData: {
+  id: string;
+  text: string;
+  element: Element | null;
+  section: string;
+}[] = [
+  {
+    id: "servicios",
+    text: "Servicios",
+    element: document.querySelector("#servicios"),
+    section: "servicios",
+  },
+  {
+    id: "consultas",
+    text: "Consultas",
+    element: document.querySelector("#consultas"),
+    section: "consultas",
+  },
+  {
+    id: "faq",
+    text: "FAQ",
+    element: document.querySelector("#faq"),
+    section: "faq",
+  },
+  {
+    id: "contacto",
+    text: "Contacto",
+    element: document.querySelector("#contacto"),
+    section: "contacto",
+  },
+];
+
 const Menu = () => {
   const [currentSection, setCurrentSection] = useState("home");
 
@@ -12,11 +44,11 @@ const Menu = () => {
   ) => {
     let modSection = "servicios";
     if (!faqSection || !forumSection || !contactSection) return;
-    if (window.scrollY >= contactSection.offsetTop) {
+    if (window.scrollY >= contactSection.offsetTop - 15) {
       modSection = "contacto";
-    } else if (window.scrollY >= faqSection.offsetTop) {
+    } else if (window.scrollY >= faqSection.offsetTop - 15) {
       modSection = "faq";
-    } else if (window.scrollY >= forumSection.offsetTop) {
+    } else if (window.scrollY >= forumSection.offsetTop - 15) {
       modSection = "consultas";
     }
     setCurrentSection(modSection);
@@ -34,26 +66,16 @@ const Menu = () => {
 
   return (
     <div className={styles.menu}>
-      <a
-        href="#"
-        className={`${currentSection === "servicios" ? styles.active : ""}`}
-        data-section="Servicios"
-      ></a>
-      <a
-        href="#consultas"
-        className={`${currentSection === "consultas" ? styles.active : ""}`}
-        data-section="Consultas"
-      ></a>
-      <a
-        href="#faq"
-        className={`${currentSection === "faq" ? styles.active : ""}`}
-        data-section="FAQ"
-      ></a>
-      <a
-        href="#contacto"
-        className={`${currentSection === "contacto" ? styles.active : ""}`}
-        data-section="Contacto"
-      ></a>
+      {menuData.map((data) => {
+        return (
+          <button
+            key={data.id}
+            onClick={() => data.element?.scrollIntoView({ behavior: "smooth" })}
+            className={`${currentSection == data.section ? styles.active : ""}`}
+            data-section={data.text}
+          ></button>
+        );
+      })}
     </div>
   );
 };
